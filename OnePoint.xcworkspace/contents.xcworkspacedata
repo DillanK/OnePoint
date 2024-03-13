@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Workspace
+   version = "1.0">
+   <Group
+      location = "group:Projects"
+      name = "Projects">
+      <FileRef
+         location = "group:Core/Core.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:MicroFeature/MicroFeature.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:OnePoint/OnePoint.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Resource/Resource.xcodeproj">
+      </FileRef>
+   </Group>
+   <Group
+      location = "container:"
+      name = "Dependencies">
+      <FileRef
+         location = "group:.build/tuist-derived/Kingfisher/Kingfisher.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/SnapKit/SnapKit.xcodeproj">
+      </FileRef>
+   </Group>
+</Workspace>

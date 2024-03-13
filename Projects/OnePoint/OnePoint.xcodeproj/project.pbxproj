@@ -1,0 +1,778 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		08A1F253748F6FB823D3FD45 /* FeatureFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2734FC04F019B7F500183D1D /* FeatureFramework.framework */; };
+		1B36DBFAB3DFCDAAB91166FE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65B88C8D87DAECAD1103E917 /* Preview Assets.xcassets */; };
+		1DCA48F1098997037AA236D3 /* ScheduleFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 62D6254654F5AFC5136A65FB /* ScheduleFramework.framework */; };
+		2645DA7D2D6477C54C434414 /* OnePointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87CBEEE8309415643700C68B /* OnePointTests.swift */; };
+		28438A48185E7464A5F19CFA /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D8E13B90501EC2DF3A5514E8 /* Kingfisher.framework */; };
+		2A2B01D5F28160836818886C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E90303AD3B140932E7895347 /* Assets.xcassets */; };
+		2C27B26FACB7E50FFAB063B5 /* CommonFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E57656713CD3FBEA078B2F0 /* CommonFramework.framework */; };
+		34C6E5A18B96F90C213203BB /* TuistAssets+OnePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F74B77A277AF670A60140BC0 /* TuistAssets+OnePoint.swift */; };
+		40499B60D69E44AEB2F5B276 /* Resource_AssetFramework.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = F45745667AA22C378495C79F /* Resource_AssetFramework.bundle */; };
+		456F2E37EF6811F73101BEE7 /* BaseFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223E0789B0F6135E4D1662F9 /* BaseFramework.framework */; };
+		59D8CC55D50203DEFF4F5BF4 /* TuistBundle+OnePoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3D8F1612226F59CF590EF88 /* TuistBundle+OnePoint.swift */; };
+		69BCB99852F1CC070517B296 /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E65DABA55C09B0191D9D90 /* SnapKit.framework */; };
+		92D61A731963825668316DC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A69372705304A21CAC2405E /* LaunchScreen.storyboard */; };
+		A47FB6231B13F8F3DBD7EE5F /* Kingfisher_Kingfisher.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = CCE7D196BC68D375BE571291 /* Kingfisher_Kingfisher.bundle */; };
+		A8F382A144159E8296F588A7 /* Kingfisher_Kingfisher.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CCE7D196BC68D375BE571291 /* Kingfisher_Kingfisher.bundle */; };
+		BB354A13F5730BD585FE3FB0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A189857DA59A5B9199D2F29 /* AppDelegate.swift */; };
+		BFBDEE5D0D1F0DCB6C9E3892 /* CalendarFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38AC64C790D5E9F768CFA454 /* CalendarFramework.framework */; };
+		C0B4C38D00B19A06856319C0 /* Resource_AssetFramework.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F45745667AA22C378495C79F /* Resource_AssetFramework.bundle */; };
+		CE7D1883D9D2F7D637E04C3A /* CoreFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4462A2B232E24376413F142E /* CoreFramework.framework */; };
+		D9EF80931C2623E9D44EF823 /* LocalizeStringFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 79A1E3D82EE572F7905BB77A /* LocalizeStringFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E2A7CFDED189A2A8BDA2E45D /* SnapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 90E65DABA55C09B0191D9D90 /* SnapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		EA56CD24D3FCD89F7C9B8DF8 /* AssetFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85B27BA6E3F431F3F2D56CF8 /* AssetFramework.framework */; };
+		F0EA6ECA401BD49790C884A9 /* LocalizeStringFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79A1E3D82EE572F7905BB77A /* LocalizeStringFramework.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5D40133C2EEEFB361F7E91E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B9BB1260B070902801B1F028 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 08FEBF3E1B56EDABA754DFB6;
+			remoteInfo = OnePoint;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		472A6E3E03CFE7FDFEB603BD /* Dependencies */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstSubfolderSpec = 16;
+			files = (
+				A47FB6231B13F8F3DBD7EE5F /* Kingfisher_Kingfisher.bundle in Dependencies */,
+				40499B60D69E44AEB2F5B276 /* Resource_AssetFramework.bundle in Dependencies */,
+			);
+			name = Dependencies;
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		65FCD6774D59EEF5173C54FF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		ADFDFD4FDA8FEF81707883D2 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D9EF80931C2623E9D44EF823 /* LocalizeStringFramework.framework in Embed Frameworks */,
+				E2A7CFDED189A2A8BDA2E45D /* SnapKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		0A189857DA59A5B9199D2F29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		223E0789B0F6135E4D1662F9 /* BaseFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BaseFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2734FC04F019B7F500183D1D /* FeatureFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FeatureFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38AC64C790D5E9F768CFA454 /* CalendarFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CalendarFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A69372705304A21CAC2405E /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3E57656713CD3FBEA078B2F0 /* CommonFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CommonFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4462A2B232E24376413F142E /* CoreFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		62D6254654F5AFC5136A65FB /* ScheduleFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ScheduleFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65B88C8D87DAECAD1103E917 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		756B91810C88BB37B8DBF3A9 /* OnePointTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OnePointTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		79A1E3D82EE572F7905BB77A /* LocalizeStringFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LocalizeStringFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		813508A3E96DA67A7A60653F /* OnePointTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "OnePointTests-Info.plist"; sourceTree = "<group>"; };
+		85B27BA6E3F431F3F2D56CF8 /* AssetFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AssetFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87CBEEE8309415643700C68B /* OnePointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnePointTests.swift; sourceTree = "<group>"; };
+		90E65DABA55C09B0191D9D90 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A077AA9BF0D785EA6A3A606A /* STG.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = STG.xcconfig; sourceTree = "<group>"; };
+		B4E2D3F240F18E0BA9A76FB9 /* OnePoint-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "OnePoint-Info.plist"; sourceTree = "<group>"; };
+		BFE0B10DF133D129A5FAFFEB /* OnePoint.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnePoint.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9D5F169A89A7E0C6AE1FCDF /* DEV.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = DEV.xcconfig; sourceTree = "<group>"; };
+		CCE7D196BC68D375BE571291 /* Kingfisher_Kingfisher.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Kingfisher_Kingfisher.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D3D8F1612226F59CF590EF88 /* TuistBundle+OnePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+OnePoint.swift"; sourceTree = "<group>"; };
+		D8E13B90501EC2DF3A5514E8 /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E194CB828EDB13533F8CC823 /* PRD.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = PRD.xcconfig; sourceTree = "<group>"; };
+		E90303AD3B140932E7895347 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F45745667AA22C378495C79F /* Resource_AssetFramework.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Resource_AssetFramework.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		F74B77A277AF670A60140BC0 /* TuistAssets+OnePoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistAssets+OnePoint.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BCBECCF877C16BCB75E075B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EB5A94DB7D9206CD436D6540 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA56CD24D3FCD89F7C9B8DF8 /* AssetFramework.framework in Frameworks */,
+				456F2E37EF6811F73101BEE7 /* BaseFramework.framework in Frameworks */,
+				BFBDEE5D0D1F0DCB6C9E3892 /* CalendarFramework.framework in Frameworks */,
+				2C27B26FACB7E50FFAB063B5 /* CommonFramework.framework in Frameworks */,
+				CE7D1883D9D2F7D637E04C3A /* CoreFramework.framework in Frameworks */,
+				08A1F253748F6FB823D3FD45 /* FeatureFramework.framework in Frameworks */,
+				28438A48185E7464A5F19CFA /* Kingfisher.framework in Frameworks */,
+				F0EA6ECA401BD49790C884A9 /* LocalizeStringFramework.framework in Frameworks */,
+				1DCA48F1098997037AA236D3 /* ScheduleFramework.framework in Frameworks */,
+				69BCB99852F1CC070517B296 /* SnapKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1A0856AF7D5766ED101CCA3E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1A9B2B560881AD85975B57FA = {
+			isa = PBXGroup;
+			children = (
+				AB5DF3619F42AAFFF073E63A /* Project */,
+				1A0856AF7D5766ED101CCA3E /* Frameworks */,
+				37E34045D57FA3E1D9C16EEB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1CF2F4BF4686DA2009EC09C0 /* Derived */ = {
+			isa = PBXGroup;
+			children = (
+				F7551DB05CEA27DA63A77900 /* InfoPlists */,
+				7EE3EA693233D1CB6F880248 /* Sources */,
+			);
+			path = Derived;
+			sourceTree = "<group>";
+		};
+		31AA18E4F0DD32A6804ACF9F /* XCConfig */ = {
+			isa = PBXGroup;
+			children = (
+				C9D5F169A89A7E0C6AE1FCDF /* DEV.xcconfig */,
+				E194CB828EDB13533F8CC823 /* PRD.xcconfig */,
+				A077AA9BF0D785EA6A3A606A /* STG.xcconfig */,
+			);
+			path = XCConfig;
+			sourceTree = "<group>";
+		};
+		37E34045D57FA3E1D9C16EEB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				85B27BA6E3F431F3F2D56CF8 /* AssetFramework.framework */,
+				223E0789B0F6135E4D1662F9 /* BaseFramework.framework */,
+				38AC64C790D5E9F768CFA454 /* CalendarFramework.framework */,
+				3E57656713CD3FBEA078B2F0 /* CommonFramework.framework */,
+				4462A2B232E24376413F142E /* CoreFramework.framework */,
+				2734FC04F019B7F500183D1D /* FeatureFramework.framework */,
+				CCE7D196BC68D375BE571291 /* Kingfisher_Kingfisher.bundle */,
+				D8E13B90501EC2DF3A5514E8 /* Kingfisher.framework */,
+				79A1E3D82EE572F7905BB77A /* LocalizeStringFramework.framework */,
+				BFE0B10DF133D129A5FAFFEB /* OnePoint.app */,
+				756B91810C88BB37B8DBF3A9 /* OnePointTests.xctest */,
+				F45745667AA22C378495C79F /* Resource_AssetFramework.bundle */,
+				62D6254654F5AFC5136A65FB /* ScheduleFramework.framework */,
+				90E65DABA55C09B0191D9D90 /* SnapKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7EE3EA693233D1CB6F880248 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F74B77A277AF670A60140BC0 /* TuistAssets+OnePoint.swift */,
+				D3D8F1612226F59CF590EF88 /* TuistBundle+OnePoint.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		A7093E6528590AFB3F81E37B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				65B88C8D87DAECAD1103E917 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		AB5DF3619F42AAFFF073E63A /* Project */ = {
+			isa = PBXGroup;
+			children = (
+				1CF2F4BF4686DA2009EC09C0 /* Derived */,
+				BB0FFCDA1E6570DBB8BD00D3 /* Resources */,
+				E8A59E396EEE459A2698EFE0 /* Sources */,
+				D7989CF116343F6FD2E3A00D /* Tests */,
+				31AA18E4F0DD32A6804ACF9F /* XCConfig */,
+			);
+			name = Project;
+			sourceTree = "<group>";
+		};
+		BB0FFCDA1E6570DBB8BD00D3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A7093E6528590AFB3F81E37B /* Preview Content */,
+				E90303AD3B140932E7895347 /* Assets.xcassets */,
+				3A69372705304A21CAC2405E /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D7989CF116343F6FD2E3A00D /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				87CBEEE8309415643700C68B /* OnePointTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		E8A59E396EEE459A2698EFE0 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0A189857DA59A5B9199D2F29 /* AppDelegate.swift */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		F7551DB05CEA27DA63A77900 /* InfoPlists */ = {
+			isa = PBXGroup;
+			children = (
+				B4E2D3F240F18E0BA9A76FB9 /* OnePoint-Info.plist */,
+				813508A3E96DA67A7A60653F /* OnePointTests-Info.plist */,
+			);
+			path = InfoPlists;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		08FEBF3E1B56EDABA754DFB6 /* OnePoint */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 89DD46F93B9BFD8350030F5A /* Build configuration list for PBXNativeTarget "OnePoint" */;
+			buildPhases = (
+				B71858C4A05EC4EF6DDD5BE3 /* Sources */,
+				CD7F03737ABEDF8284C9C696 /* Resources */,
+				ADFDFD4FDA8FEF81707883D2 /* Embed Frameworks */,
+				EB5A94DB7D9206CD436D6540 /* Frameworks */,
+				472A6E3E03CFE7FDFEB603BD /* Dependencies */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OnePoint;
+			productName = OnePoint;
+			productReference = BFE0B10DF133D129A5FAFFEB /* OnePoint.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8035A42FE8DC5E61B51F68C8 /* OnePointTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFB56414AD247A6126CD4D91 /* Build configuration list for PBXNativeTarget "OnePointTests" */;
+			buildPhases = (
+				F9A0EF460EACC668991CC05E /* Sources */,
+				D05256D70D98F6405EDC9A86 /* Resources */,
+				65FCD6774D59EEF5173C54FF /* Embed Frameworks */,
+				BCBECCF877C16BCB75E075B6 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CBBC7E3ED02624085A8B2019 /* PBXTargetDependency */,
+			);
+			name = OnePointTests;
+			productName = OnePointTests;
+			productReference = 756B91810C88BB37B8DBF3A9 /* OnePointTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B9BB1260B070902801B1F028 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				ORGANIZATIONNAME = Beakbig;
+				TargetAttributes = {
+					8035A42FE8DC5E61B51F68C8 = {
+						TestTargetID = 08FEBF3E1B56EDABA754DFB6;
+					};
+				};
+			};
+			buildConfigurationList = 3ED015341EF4F9FCB7259F50 /* Build configuration list for PBXProject "OnePoint" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 1A9B2B560881AD85975B57FA;
+			productRefGroup = 37E34045D57FA3E1D9C16EEB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				08FEBF3E1B56EDABA754DFB6 /* OnePoint */,
+				8035A42FE8DC5E61B51F68C8 /* OnePointTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CD7F03737ABEDF8284C9C696 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2A2B01D5F28160836818886C /* Assets.xcassets in Resources */,
+				92D61A731963825668316DC4 /* LaunchScreen.storyboard in Resources */,
+				1B36DBFAB3DFCDAAB91166FE /* Preview Assets.xcassets in Resources */,
+				A8F382A144159E8296F588A7 /* Kingfisher_Kingfisher.bundle in Resources */,
+				C0B4C38D00B19A06856319C0 /* Resource_AssetFramework.bundle in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D05256D70D98F6405EDC9A86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B71858C4A05EC4EF6DDD5BE3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				34C6E5A18B96F90C213203BB /* TuistAssets+OnePoint.swift in Sources */,
+				59D8CC55D50203DEFF4F5BF4 /* TuistBundle+OnePoint.swift in Sources */,
+				BB354A13F5730BD585FE3FB0 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F9A0EF460EACC668991CC05E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2645DA7D2D6477C54C434414 /* OnePointTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CBBC7E3ED02624085A8B2019 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = OnePoint;
+			target = 08FEBF3E1B56EDABA754DFB6 /* OnePoint */;
+			targetProxy = 5D40133C2EEEFB361F7E91E0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0469EB6FC7333A2D97538854 /* DEV */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9D5F169A89A7E0C6AE1FCDF /* DEV.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_DEV;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beakbig.dev.onepoint;
+				PRODUCT_NAME = "(D)OnePoint";
+			};
+			name = DEV;
+		};
+		1505E160F8ADFBCCA69158A6 /* PRD */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E194CB828EDB13533F8CC823 /* PRD.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_PRD;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beakbig.onepoint;
+				PRODUCT_NAME = OnePoint;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = PRD;
+		};
+		51528443460C48C4578E7E7F /* STG */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A077AA9BF0D785EA6A3A606A /* STG.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon_STG;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_MODULE_VERIFIER = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(PRODUCT_NAME)";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.beakbig.stg.onepoint;
+				PRODUCT_NAME = "(S)OnePoint";
+			};
+			name = STG;
+		};
+		55993EEED49A00AA8F066CC7 /* PRD */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E194CB828EDB13533F8CC823 /* PRD.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${inherited}";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/OnePoint-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${inherited}";
+				PRODUCT_NAME = OnePoint;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = PRD;
+		};
+		613489B700BDC19957A70A90 /* DEV */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C9D5F169A89A7E0C6AE1FCDF /* DEV.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${inherited}";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3L7K9287C3;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/OnePoint-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${inherited}";
+				PRODUCT_NAME = OnePoint;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = OnePoint_Dev;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = DEV;
+		};
+		97230177834D995B4C3A2B1E /* STG */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A077AA9BF0D785EA6A3A606A /* STG.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "${inherited}";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Derived/InfoPlists/OnePoint-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "${inherited}";
+				PRODUCT_NAME = OnePoint;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = STG;
+		};
+		A06051283F00C02BA2E3BBAB /* DEV */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/OnePointTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.beakbig.OnePointTests;
+				PRODUCT_NAME = OnePointTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnePoint.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OnePoint";
+				TEST_TARGET_NAME = OnePoint;
+			};
+			name = DEV;
+		};
+		C36B71F28240CBDE382BF7D4 /* PRD */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/OnePointTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.beakbig.OnePointTests;
+				PRODUCT_NAME = OnePointTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnePoint.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OnePoint";
+				TEST_TARGET_NAME = OnePoint;
+			};
+			name = PRD;
+		};
+		CDA96252B92EBEB6F4D99335 /* STG */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "Derived/InfoPlists/OnePointTests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.beakbig.OnePointTests;
+				PRODUCT_NAME = OnePointTests;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_COMPILATION_MODE = singlefile;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OnePoint.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/OnePoint";
+				TEST_TARGET_NAME = OnePoint;
+			};
+			name = STG;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3ED015341EF4F9FCB7259F50 /* Build configuration list for PBXProject "OnePoint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0469EB6FC7333A2D97538854 /* DEV */,
+				1505E160F8ADFBCCA69158A6 /* PRD */,
+				51528443460C48C4578E7E7F /* STG */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = PRD;
+		};
+		89DD46F93B9BFD8350030F5A /* Build configuration list for PBXNativeTarget "OnePoint" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				613489B700BDC19957A70A90 /* DEV */,
+				55993EEED49A00AA8F066CC7 /* PRD */,
+				97230177834D995B4C3A2B1E /* STG */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = PRD;
+		};
+		AFB56414AD247A6126CD4D91 /* Build configuration list for PBXNativeTarget "OnePointTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A06051283F00C02BA2E3BBAB /* DEV */,
+				C36B71F28240CBDE382BF7D4 /* PRD */,
+				CDA96252B92EBEB6F4D99335 /* STG */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = PRD;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B9BB1260B070902801B1F028 /* Project object */;
+}

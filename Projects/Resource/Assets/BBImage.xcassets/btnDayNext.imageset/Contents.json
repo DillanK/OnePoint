@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "btnDayNext.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

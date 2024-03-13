@@ -1,0 +1,11 @@
+//PRODUCT_BUNDLE_IDENTIFIER = com.beakbig.onePoint
+
+// other swift flag
+OTHER_SWIFT_FLAGS[config=DEV][sdk=*] = ${inherited} -DDEV
+OTHER_SWIFT_FLAGS[config=STG][sdk=*] = ${inherited} -DSTG
+OTHER_SWIFT_FLAGS[config=PRD][sdk=*] = ${inherited} -DPRD
+
+// Minimum Deployments
+IPHONEOS_DEPLOYMENT_TARGET = 15.0
+// Appstore Category
+//INFOPLIST_KEY_LSApplicationCategoryType = public.app-category.finance

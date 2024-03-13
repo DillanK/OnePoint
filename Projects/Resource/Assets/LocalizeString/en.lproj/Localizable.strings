@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  Resource
+
+  Created by hyunjin on 2023/04/04.
+  
+*/
+
+/* ==================================================== */
+/* ==================================================== */
+/* 요일 */
+"SUNDAY" = "SUNDAY";
+"MONDAY" = "MONDAY";
+"TUESDAY" = "TUESDAY";
+"WEDNESDAY" = "WEDNESDAY";
+"THURSDAY" = "THURSDAY";
+"FRIDAY" = "FRIDAY";
+"SATURDAY" = "SATURDAY";
+
+/* 요일(약어) */
+"SUN" = "SUN";
+"MON" = "MON";
+"TUE" = "TUE";
+"WED" = "WED";
+"THU" = "THU";
+"FRI" = "FRI";
+"SAT" = "SAT";
+
+/* ==================================================== */
+/* ==================================================== */
+/* 일정 입력 */
+"Please enter your schedule." = "Please enter your schedule.";
+"date" = "date";
+"Start/End Time" = "Start/End Time";
+"Reminder" = "Reminder";
+"No Reminder" = "no";
+"A month ago" = "month";
+"A week ago" = "week";
+"A day ago" = "day";
+"Direct time setting" = "setting";
+"Repeatedly" = "Repeatedly";
+"No Repeatedly" = "No Repeatedly";
+"Once" = "Once";
+"every month" = "month";
+"every day" = "day";
+"every week" = "week";
+"every year" = "year";
+"Color" = "Color";
+"Detail" = "Detail";
+"Please enter your details." = "Please enter your details.";
+"Share" = "Share";
+"Add Schedule" = "Add Schedule";
+"Move to temporary box" = "Move to temporary box";
