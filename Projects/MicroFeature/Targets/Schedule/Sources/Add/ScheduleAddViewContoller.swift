@@ -36,6 +36,10 @@ public class ScheduleAddViewContoller: BaseViewController {
         ColorViewModel(self.cancellable)
     }()
     
+    private lazy var vmJob = {
+        JobViewModel(self.cancellable)
+    }()
+    
     private lazy var vTitle = {
         TitleView.create(vm: self.vmTitle)
     }()
@@ -57,7 +61,7 @@ public class ScheduleAddViewContoller: BaseViewController {
     }()
     
     private lazy var vJob = {
-        JobView.create()
+        JobView.create(vm: self.vmJob)
     }()
     
     private lazy var vShare = {
@@ -87,7 +91,10 @@ public class ScheduleAddViewContoller: BaseViewController {
     }
     
     public override func bindEvent() {
-        
+        view.addGestureRecognizer(
+            UITapGestureRecognizer(target: self,
+                                   action: #selector(tapGesture))
+        )
     }
     
     public override func bindCombine() {
@@ -107,6 +114,14 @@ public class ScheduleAddViewContoller: BaseViewController {
                 self.vmRepeatedly.input.req.send(.SELECTED_COLOR(color))
             }
         }.store(in: &cancellable)
+        
+        vmJob.output.resScroll.sink {
+            switch $0 {
+            case .SCROLL_TARGET(let target):
+                debugPrint(#file, #function, #line)
+                self.vScrollGroup.setContentOffset(.init(x: 0, y:  self.vScrollGroup.contentOffset.y + target.height()), animated: true)
+            }
+        }.store(in: &cancellable)
     }
     
     public override func bindConstraint() {
@@ -121,7 +136,7 @@ public class ScheduleAddViewContoller: BaseViewController {
         vScrollGroup.snp.makeConstraints {
             $0.top.equalTo(vTitle.snp.bottom)
             $0.left.right.equalToSuperview()
-            $0.bottom.equalTo(vAddEvent.snp.top)
+            $0.bottom.equalTo(self.view.keyboardLayoutGuide.snp.top)//vAddEvent.snp.top)
         }
         
         vTask.snp.makeConstraints {
@@ -157,5 +172,11 @@ public class ScheduleAddViewContoller: BaseViewController {
         }
         
         
+    }
+}
+
+extension ScheduleAddViewContoller {
+    @objc func tapGesture() {
+        self.view.endEditing(true)
     }
 }

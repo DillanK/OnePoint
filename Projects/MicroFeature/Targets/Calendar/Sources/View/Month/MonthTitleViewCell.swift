@@ -15,7 +15,7 @@ class MonthTitleViewCell: BaseCollectionViewCell<CalendarModelProtocol> {
     
     lazy var lblMonth = {
         UILabel().apply {
-            $0.textColor = BBColor.scheduleTitle.color()
+            $0.textColor = BBColor.black17.color()
         }
     }()
     
@@ -39,10 +39,20 @@ class MonthTitleViewCell: BaseCollectionViewCell<CalendarModelProtocol> {
         }
     }()
     
+    lazy var vLine = {
+        UIView().apply {
+            $0.backgroundColor = BBColor.veryLightPink187.color()
+        }
+    }()
+    
     override func bindView() {
         contentView.addSubview(lblMonth)
         contentView.addSubview(lblJob)
         contentView.addSubview(lblJobComplte)
+        contentView.addSubview(vLine)
+        
+        lblJob.isHidden = true
+        lblJobComplte.isHidden = true
     }
     
     override func bindEvent() {
@@ -64,8 +74,15 @@ class MonthTitleViewCell: BaseCollectionViewCell<CalendarModelProtocol> {
         }
 
         lblMonth.snp.makeConstraints {
-            $0.left.top.bottom.equalToSuperview()
+            $0.left.equalToSuperview().offset(13)
+            $0.top.bottom.equalToSuperview()
             $0.right.equalTo(lblJob.snp.left)
+        }
+        
+        vLine.snp.makeConstraints {
+            $0.left.right.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-11)
+            $0.height.equalTo(2)
         }
     }
     
@@ -101,7 +118,19 @@ class MonthTitleViewCell: BaseCollectionViewCell<CalendarModelProtocol> {
             range: (stringJob as NSString).range(of: "10")
         )
         
-        lblMonth.text = "\(model.year)년 \(model.month.value())월"
+        let month = "\(model.month.value())"
+        let attributeMonth = NSMutableAttributedString(string: "\(model.month.value()) 월")
+        attributeMonth.addAttribute(
+            .font,
+            value: BBFont.NotoSansKR.bold.font(size: 24),
+            range: NSMakeRange(0, month.count)
+        )
+        attributeMonth.addAttribute(
+            .font,
+            value: BBFont.NotoSansKR.medium.font(size: 13),
+            range: NSMakeRange(month.count + 1, 1)
+        )
+        lblMonth.attributedText = attributeMonth
         lblJob.attributedText = attributeJob
         lblJobComplte.attributedText = attributeJobComplete
         

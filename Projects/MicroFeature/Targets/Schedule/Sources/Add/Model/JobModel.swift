@@ -9,5 +9,6 @@
 import Foundation
 
 struct JobModel {
+    let timeStamp: String
     let text: String
 }

@@ -24,6 +24,9 @@
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 	
 public enum BBColor: String, CaseIterable {	
+	case clear = "Clear" // {accessModifier}} static let clear = AssetFrameworkColors(name: "Clear")
+	case deepSkyBlue = "DeepSkyBlue" // {accessModifier}} static let deepSkyBlue = AssetFrameworkColors(name: "DeepSkyBlue")
+	case grapefruit = "Grapefruit" // {accessModifier}} static let grapefruit = AssetFrameworkColors(name: "Grapefruit")
 	case black = "black" // {accessModifier}} static let black = AssetFrameworkColors(name: "black")
 	case black17 = "black17" // {accessModifier}} static let black17 = AssetFrameworkColors(name: "black17")
 	case black51 = "black51" // {accessModifier}} static let black51 = AssetFrameworkColors(name: "black51")

@@ -14,13 +14,16 @@ import LocalizeStringFramework
 import SnapKit
 
 class JobView: BaseView {
-    static func create() -> BaseView {
+    static func create(vm: JobViewModel) -> BaseView {
         return JobView(isBindCall: false).apply {
             $0.backgroundColor = BBColor.white.color()
+            $0.vm = vm
             $0.initializeCall()
-            $0.makeDetailInput(rootView: $0.vInputGroup)
+//            $0.makeDetailInput(rootView: $0.vInputGroup)
         }
     }
+    
+    private var vm: JobViewModel!
     
     private lazy var lblJob = {
         UILabel().apply {
@@ -31,25 +34,44 @@ class JobView: BaseView {
     }()
     
     private lazy var vInputTable = {
-        UITableView()
+        UITableView().apply {
+            $0.register(JobViewCell.self, forCellReuseIdentifier: "JobViewCell")
+            $0.separatorStyle = .none
+        }
     }()
     
-    private lazy var vInputGroup = {
-        UIView()
+    private lazy var tfInput = {
+        UITextField().apply {
+            $0.layer.borderColor = BBColor.veryLightPink226.color().cgColor
+            $0.layer.borderWidth = 1
+            $0.layer.cornerRadius = 4
+            $0.placeholder = "세부사항을 입력해주세요."
+            $0.setPlaceholderColor(BBColor.veryLightPink187.color())
+            $0.addPadding(padding: 10)
+        }
     }()
 
     override func bindView() {
         addSubview(lblJob)
         addSubview(vInputTable)
-        addSubview(vInputGroup)
+        addSubview(tfInput)
     }
     
     override func bindEvent() {
-        
+        vInputTable.delegate = self
+        vInputTable.dataSource = self
+        tfInput.delegate = self
     }
     
     override func bindCombine() {
-        
+        vm.output.res.sink {
+            switch $0 {
+            case .RELOAD_TABLE:
+                self.reloadConstraint()
+                self.vInputTable.reloadData()
+                self.vm.output.resScroll.send(.SCROLL_TARGET(self.tfInput))
+            }
+        }.store(in: &cancellable)
     }
     
     override func bindConstraint(_ isAdjustWindow: Bool) {
@@ -64,9 +86,10 @@ class JobView: BaseView {
             $0.top.equalTo(lblJob.snp.bottom).offset(4)
             $0.left.equalToSuperview().offset(22)
             $0.right.equalToSuperview().offset(-22)
+            $0.height.equalTo(0)
         }
         
-        vInputGroup.snp.makeConstraints {
+        tfInput.snp.makeConstraints {
             $0.top.equalTo(vInputTable.snp.bottom).offset(4)
             $0.left.equalToSuperview().offset(22)
             $0.right.equalToSuperview().offset(-22)
@@ -74,48 +97,65 @@ class JobView: BaseView {
             $0.bottom.equalToSuperview()
         }
     }
+    
+    private func reloadConstraint() {
+        let count = self.vm.jobs.count
+        vInputTable.snp.remakeConstraints {
+            $0.top.equalTo(lblJob.snp.bottom).offset(4)
+            $0.left.equalToSuperview().offset(22)
+            $0.right.equalToSuperview().offset(-22)
+            $0.height.equalTo(count * 46)
+        }
+        
+        if count > 0 {
+            tfInput.snp.remakeConstraints {
+                $0.top.equalTo(vInputTable.snp.bottom).offset(0)
+                $0.left.equalToSuperview().offset(22)
+                $0.right.equalToSuperview().offset(-22)
+                $0.height.equalTo(42)
+                $0.bottom.equalToSuperview()
+            }
+        } else {
+            tfInput.snp.remakeConstraints {
+                $0.top.equalTo(vInputTable.snp.bottom).offset(4)
+                $0.left.equalToSuperview().offset(22)
+                $0.right.equalToSuperview().offset(-22)
+                $0.height.equalTo(42)
+                $0.bottom.equalToSuperview()
+            }
+        }
+        
+        self.superview?.layoutIfNeeded()
+    }
 }
 
-extension JobView {
-    func makeDetailInput(rootView: UIView) {
-        let tf = makeTextField()
-        let btn = makeButton()
-        let view = UIView()
-        view.addSubview(btn)
-        view.addSubview(tf)
-        rootView.addSubview(view)
-        
-        view.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        btn.snp.makeConstraints {
-            $0.right.equalToSuperview()
-            $0.size.equalTo(26)
-            $0.centerY.equalToSuperview()
-        }
-        
-        tf.snp.makeConstraints {
-            $0.left.top.bottom.equalToSuperview()
-            $0.right.equalTo(btn.snp.left).offset(-8)
-            $0.height.equalTo(42)
-        }
+extension JobView: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        vm.jobs.count
     }
     
-    private func makeTextField() -> UITextField {
-        return UITextField().apply {
-            $0.layer.borderColor = BBColor.veryLightPink226.color().cgColor
-            $0.layer.borderWidth = 1
-            $0.layer.cornerRadius = 4
-            $0.placeholder = "세부사항을 입력해주세요."
-            $0.setPlaceholderColor(BBColor.veryLightPink187.color())
-            $0.addPadding(padding: 10)
-        }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "JobViewCell", for: indexPath
+        ) as! JobViewCell
+        
+        cell.bindData(data: vm.jobs[indexPath.row])
+        
+        return cell
+    }
+}
+
+extension JobView: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        vm.output.resScroll.send(.SCROLL_TARGET(tfInput))
     }
     
-    private func makeButton() -> UIButton {
-        return UIButton().apply {
-            $0.setImage(BBImage.iconInputAdd.image(), for: .normal)
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.text == nil, textField.text!.count == 0 {
+            return false
         }
+        vm.input.req.send(.AddJob(textField.text!))
+        textField.text = ""
+        return true
     }
 }

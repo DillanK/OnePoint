@@ -10,4 +10,5 @@ import UIKit
 
 public protocol MonthlyProxy {
     func view() -> UIView
+    func centerDateInfo(block: @escaping (Int) -> ())
 }

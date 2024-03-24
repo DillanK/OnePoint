@@ -6,7 +6,7 @@
 //  Copyright © 2024 Beakbig. All rights reserved.
 //
 
-import Foundation
+import BaseFramework
 
 public class CalendarProxy {
     public static func loadMonthly() -> MonthlyProxy {

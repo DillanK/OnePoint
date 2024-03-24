@@ -16,7 +16,7 @@ class MonthlyView: BaseView, MonthlyProxy {
         return MonthlyView(isBindCall: false).apply {
             $0.initializeCall()
             LocalCalendarManger.shared.loadMonthly()
-            $0.backgroundColor = .green
+            $0.backgroundColor = BBColor.white.color()
         }
     }
     
@@ -44,6 +44,10 @@ class MonthlyView: BaseView, MonthlyProxy {
     var weekDays = Array<(String, DailyModel)>()
     var cellSize: CGSize = .zero
     var reScrolling: (Bool, CGFloat, CGFloat) = (false, 0, 0)
+    var selectedCell: MonthViewCell?
+    var selectedBlock: ((Int) -> ())?
+    var scrollOffset: CGFloat = 0
+    var isScrollingUp: Bool = false
     
     override func bindView() {
         addSubview(vCollection)
@@ -77,7 +81,9 @@ class MonthlyView: BaseView, MonthlyProxy {
     
     override func bindConstraint(_ isAdjustWindow: Bool) {
         vCollection.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.bottom.equalToSuperview()
+            $0.left.equalToSuperview().offset(9)
+            $0.right.equalToSuperview().offset(-9)
         }
         
         if isAdjustWindow,
@@ -91,7 +97,7 @@ class MonthlyView: BaseView, MonthlyProxy {
     override func layoutSubviews() {
         super.layoutSubviews()
         debugPrint(#function, #line, self.frame)
-        cellSize = .init(width: (self.width() - 14) / 7, height: (self.width() - 14) / 7)
+        cellSize = .init(width: (self.width() - 14 - 18) / 7, height: 86)
         if reScrolling.0 {
             reloadData(index: reScrolling.1, monthCount: reScrolling.2)
         }
@@ -101,6 +107,10 @@ class MonthlyView: BaseView, MonthlyProxy {
 extension MonthlyView {
     func view() -> UIView {
         return self
+    }
+    
+    func centerDateInfo(block: @escaping (Int) -> ()) {
+        selectedBlock = block
     }
 }
 
@@ -142,7 +152,7 @@ extension MonthlyView {
 
 extension MonthlyView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UICollectionViewDataSourcePrefetching {
     func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
-        debugPrint(#file, #function, #line, indexPaths)
+//        debugPrint(#file, #function, #line,  LocalCalendarManger.shared.monthlyData[indexPaths.first!.row].1)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -157,15 +167,19 @@ extension MonthlyView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        debugPrint(#file, #function, #line)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? MonthViewCell else {
+            return
+        }
+        selectedCell?.selectCell(isSelected: false)
+        cell.selectCell(isSelected: true)
+        selectedCell = cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if LocalCalendarManger.shared.monthlyData[indexPath.row].1 as? MonthlyModel != nil {
             return .init(width: self.width(), height: cellSize.height)
         }
-        
-//        let size = (self.width() - 14) / 7
+
         return cellSize
     }
     
@@ -175,5 +189,44 @@ extension MonthlyView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard cell as? MonthTitleViewCell != nil else {
+            return
+        }
+        
+        if let model = LocalCalendarManger.shared.monthlyData[indexPath.row].1 as? MonthlyModel {
+            
+            // Scroll Down
+            if isScrollingUp.not() {
+                debugPrint(#file, #function, #line, "====== Year : \(model.year)   Month : \(model.month.value())")
+                selectedBlock?(model.year)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard cell as? MonthTitleViewCell != nil else {
+            return
+        }
+        
+        if let model = LocalCalendarManger.shared.monthlyData[indexPath.row].1 as? MonthlyModel {
+            // Scroll Up
+            if isScrollingUp {
+                debugPrint(#file, #function, #line, "+++++++ Year : \(model.year)   Month : \(model.month.value())")
+                selectedBlock?(model.year)
+            }
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollOffset > scrollView.contentOffset.y {
+            isScrollingUp = false
+        } else {
+            isScrollingUp = true
+        }
+
+        scrollOffset = scrollView.contentOffset.y
     }
 }

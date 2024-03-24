@@ -24,13 +24,6 @@ class AddEasyScheduleView: BaseView {
         }
     }
     
-    /// 키보드 올라왔을때 영역 잡는 용도로 이용
-    private lazy var vKeyboard = {
-        UIView().apply {
-            $0.backgroundColor = .clear
-        }
-    }()
-    
     private lazy var vBackground = {
         UIView().apply {
             $0.backgroundColor = .black
@@ -71,13 +64,13 @@ class AddEasyScheduleView: BaseView {
     private var state: FoldState = .IN
     private var keyboardSize: CGRect = .zero
     
-    private let DEF_HEIGHT: CGFloat = 80
-    private let DEF_WIDTH: CGFloat = 80
-    private let DEF_MARGIN: CGFloat = 8
+//    private let DEF_HEIGHT: CGFloat = 48
+    private let DEF_WIDTH: CGFloat = 48
+    private let DEF_MARGIN: CGFloat = 12
+    private let DEF_BOTTOM_MARGIN: CGFloat = 32
     private var cancelable = Set<AnyCancellable>()
     
     override func bindView() {
-        addSubview(vKeyboard)
         addSubview(vBackground)
         vBackground.addSubview(btnType)
         vBackground.addSubview(tfName)
@@ -86,17 +79,18 @@ class AddEasyScheduleView: BaseView {
     
     override func bindCombine() {
         
-        NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification).sink { notification in
-            debugPrint(#file, #function, #line, "Background : \(self.vBackground)")
-            self.snp.remakeConstraints {
-                $0.height.equalTo(abs(self.vBackground.frame.origin.y) + self.vBackground.frame.height + self.safeArea().bottom)
-                $0.width.equalTo(self.windowBounds().width - (self.DEF_MARGIN * 2))
-                $0.right.equalToSuperview().offset(-self.DEF_MARGIN)
-                $0.bottom.equalToSuperview().offset(-self.DEF_MARGIN)
-            }
-            self.superview?.layoutIfNeeded()
-            
-        }.store(in: &cancelable)
+//        NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification).sink { notification in
+//            debugPrint(#file, #function, #line, "Background : \(self.vBackground)")
+////            self.snp.remakeConstraints {
+////                $0.height.equalTo(abs(self.vBackground.frame.origin.y) + self.vBackground.frame.height + self.safeArea().bottom)
+////                $0.width.equalTo(self.windowBounds().width - (self.DEF_MARGIN * 2))
+////                $0.right.equalToSuperview().offset(-self.DEF_MARGIN)
+////                $0.bottom.equalTo(self.keyboardLayoutGuide.snp.top)//equalToSuperview().offset(-self.keyboardLayoutGuide.layoutFrame.height)
+////            }
+//            UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut) {
+//                self.superview?.layoutIfNeeded()
+//            }
+//        }.store(in: &cancelable)
         
 //        sharedDataViewModel?.output.result.sink { result in
 //            switch result {
@@ -119,16 +113,10 @@ class AddEasyScheduleView: BaseView {
     }
     
     override func bindConstraint(_ isAdjustWindow: Bool) {
-        vKeyboard.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview()
-            $0.bottom.equalTo(keyboardLayoutGuide.snp.top)
-            $0.height.equalTo(10)
-        }
-
         vBackground.snp.remakeConstraints {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(DEF_HEIGHT)
+            $0.height.equalTo(self.type.viewHeight())
         }
         
         btnType.snp.remakeConstraints {
@@ -140,12 +128,13 @@ class AddEasyScheduleView: BaseView {
         self.snp.remakeConstraints {
             if state == .IN {
                 $0.width.height.equalTo(self.type.viewHeight())
+                $0.bottom.equalToSuperview().offset(-self.safeArea().bottom)
             } else if state == .OUT {
-                $0.height.equalTo(self.type.viewHeight() + self.safeArea().bottom)
+                $0.height.equalTo(self.type.viewHeight())
                 $0.width.equalTo(self.windowBounds().width - (DEF_MARGIN * 2))
+                $0.bottom.equalTo(self.keyboardLayoutGuide.snp.top)
             }
             $0.right.equalToSuperview().offset(-DEF_MARGIN)
-            $0.bottom.equalToSuperview().offset(-DEF_MARGIN)
         }
     }
 }
@@ -186,7 +175,7 @@ extension AddEasyScheduleView {
         UIView.animate(withDuration: 0.3, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.vBackground.snp.remakeConstraints {
                 $0.top.leading.trailing.equalToSuperview()
-                $0.height.equalTo(self.DEF_HEIGHT)
+                $0.height.equalTo(self.type.viewHeight())
             }
             
             self.snp.updateConstraints {
@@ -211,15 +200,14 @@ extension AddEasyScheduleView {
         UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.vBackground.snp.remakeConstraints {
                 $0.leading.trailing.equalToSuperview()
-                $0.height.equalTo(self.DEF_HEIGHT)
-                $0.bottom.equalTo(self.vKeyboard.snp.bottom)
+                $0.height.equalTo(self.type.viewHeight())
             }
 
             self.snp.remakeConstraints {
-                $0.height.equalTo(self.type.viewHeight() + self.safeArea().bottom)
                 $0.width.equalTo(self.windowBounds().width - (self.DEF_MARGIN * 2))
+                $0.height.equalTo(self.type.viewHeight())
                 $0.right.equalToSuperview().offset(-self.DEF_MARGIN)
-                $0.bottom.equalToSuperview().offset(-self.DEF_MARGIN)
+                $0.bottom.equalTo(self.keyboardLayoutGuide.snp.top)
             }
 
             self.btnType.transform = .identity
@@ -229,14 +217,14 @@ extension AddEasyScheduleView {
     }
     
     private func animateFoldOutWithName() {
-        tfName.isHidden = false
+        tfName.isHidden = true
         
         UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.tfName.snp.remakeConstraints {
-                $0.top.equalToSuperview().offset(self.DEF_HEIGHT/4)
-                $0.leading.equalTo(self.vBackground.snp.leading).offset(self.DEF_HEIGHT/2)
+                $0.top.equalToSuperview().offset(self.type.viewHeight()/4)
+                $0.leading.equalTo(self.vBackground.snp.leading).offset(self.DEF_WIDTH / 2)
                 $0.trailing.equalTo(self.vBackground.snp.trailing).offset(-self.DEF_WIDTH)
-                $0.height.equalTo(self.DEF_HEIGHT/2)
+                $0.height.equalTo(self.type.viewHeight()/2)
             }
             
             self.vNameUnderLine.snp.remakeConstraints {
@@ -247,6 +235,7 @@ extension AddEasyScheduleView {
 
             self.layoutIfNeeded()
         } completion: { isComplete in
+            self.tfName.isHidden = false
             self.vNameUnderLine.isHidden = false
             UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut) {
                 self.vNameUnderLine.snp.remakeConstraints {

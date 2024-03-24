@@ -16,11 +16,10 @@ enum AddEasyType {
     func viewHeight() -> CGFloat {
         switch self {
         case .ADD:
-            return 80
+            return 48
         case .INPUT:
             return 80
         }
-        
     }
 }
 

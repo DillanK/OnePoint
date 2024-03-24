@@ -16,4 +16,8 @@ public class ScheduleProxy {
     public static func loadScheduleList() -> UIView {
         return ScheduleListView.create()
     }
+    
+    public static func loadEasyScheduleView() -> UIView {
+        return AddEasyScheduleView.create()
+    }
 }

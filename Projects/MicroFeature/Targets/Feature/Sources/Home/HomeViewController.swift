@@ -22,23 +22,27 @@ class HomeViewController: BaseViewController {
     }
     
     lazy var vTop = {
-        TopView.create(viewModel: self.topViewModel)
+        TopView.create(viewModel: self.vmTop)
     }()
     
     lazy var vSelectedDate = {
-        SelectedDateView.create(viewModel: self.selectedDateViewModel)
+        SelectedDateView.create(vm: self.vmSelectedDate)
     }()
     
-    lazy var topViewModel = {
+    lazy var vmTop = {
         TopViewModel(self.cancellable)
     }()
     
-    lazy var selectedDateViewModel = {
+    lazy var vmSelectedDate = {
         SelectedDateViewModel(self.cancellable)
     }()
     
     lazy var vScheduleList = {
         ScheduleProxy.loadScheduleList()
+    }()
+    
+    lazy var vEasyAddSchedule = {
+        ScheduleProxy.loadEasyScheduleView()
     }()
     
     private var cancellable = Set<AnyCancellable>()
@@ -47,6 +51,7 @@ class HomeViewController: BaseViewController {
         view.addSubview(vTop)
         view.addSubview(vSelectedDate)
         view.addSubview(vScheduleList)
+        view.addSubview(vEasyAddSchedule)
     }
     
     override func bindEvent() {
@@ -54,7 +59,7 @@ class HomeViewController: BaseViewController {
     }
     
     override func bindCombine() {
-        topViewModel.output.clickEvent.sink {
+        vmTop.output.clickEvent.sink {
             switch $0 {
             case .ADD_SCHEDULE:
                 debugPrint(#file, #function, #line)
@@ -63,6 +68,18 @@ class HomeViewController: BaseViewController {
                 debugPrint(#file, #function, #line)
             case .SEARCH:
                 debugPrint(#file, #function, #line)
+            }
+        }.store(in: &cancellable)
+        
+        vmSelectedDate.output.clickEvent.sink {
+            switch $0 {
+            case .NONE:
+                debugPrint(#file, #function, #line)
+            case .LOAD_SCHEDULE:
+                debugPrint(#file, #function, #line)
+            case .SHOW_CALENDAR:
+                debugPrint(#file, #function, #line)
+                self.present(CalendarViewController.create(), animated: true)
             }
         }.store(in: &cancellable)
     }

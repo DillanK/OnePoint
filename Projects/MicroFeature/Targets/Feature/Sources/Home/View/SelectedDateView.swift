@@ -12,10 +12,10 @@ import BaseFramework
 import AssetFramework
 
 class SelectedDateView: BaseView {
-    public static func create(viewModel: SelectedDateViewModel) -> BaseView {
+    public static func create(vm: SelectedDateViewModel) -> BaseView {
         return SelectedDateView(isBindCall: false).apply {
             $0.backgroundColor = .clear
-            $0.viewModel = viewModel
+            $0.vm = vm
             $0.initializeCall()
         }
     }
@@ -41,7 +41,7 @@ class SelectedDateView: BaseView {
         UIButton(type: .system).apply {
             $0.setTitle("2023.11.22", for: .normal)
             $0.setTitleColor(BBColor.selectedDate.color(), for: .normal)
-            $0.titleLabel?.font = BBFont.NotoSansKR.bold.font(size: 44)
+            $0.titleLabel?.font = BBFont.NotoSansKR.bold.font(size: 42)
         }
     }()
     
@@ -91,7 +91,7 @@ class SelectedDateView: BaseView {
         }
     }()
     
-    var viewModel: SelectedDateViewModel!
+    var vm: SelectedDateViewModel!
     
     /// Init Call Step1(View addSubview 등 처리)
     override func bindView() {
@@ -109,8 +109,9 @@ class SelectedDateView: BaseView {
     
     /// Init Call Step2(delegate, action 설정 처리)
     override func bindEvent() {
-//        btnAddSchedule.addTarget(self, action: #selector(eventAddSchdule(_:)), for: .touchUpInside)
-//        btnAddSchedule.addTarget(self, action: #selector(eventSetting(_:)), for: .touchUpInside)
+        btnSelectedDate.addTarget(
+            self, action: #selector(eventSelectedDate(_:)), for: .touchUpInside
+        )
     }
     
     /// Init Call Step3(Combine, Delegate 제약사항 추가)
@@ -147,13 +148,13 @@ class SelectedDateView: BaseView {
         btnPrevDay.snp.makeConstraints {
             $0.top.equalTo(vDateGroup.snp.top)
             $0.bottom.equalTo(vDateGroup.snp.bottom)
-            $0.right.equalTo(vDateGroup.snp.left).offset(-22)
+            $0.right.equalTo(vDateGroup.snp.left).offset(-24)
         }
         
         btnNextDay.snp.makeConstraints {
             $0.top.equalTo(vDateGroup.snp.top)
             $0.bottom.equalTo(vDateGroup.snp.bottom)
-            $0.left.equalTo(vDateGroup.snp.right).offset(22)
+            $0.left.equalTo(vDateGroup.snp.right).offset(24)
         }
         
         vStateCountGroup.snp.makeConstraints {
@@ -178,5 +179,11 @@ class SelectedDateView: BaseView {
             $0.top.bottom.right.equalToSuperview()
             $0.left.equalTo(ivVerticalLine.snp.right).offset(8)
         }
+    }
+}
+
+extension SelectedDateView {
+    @objc func eventSelectedDate(_ sender: UIButton) {
+        vm.output.clickEvent.send(.SHOW_CALENDAR)
     }
 }

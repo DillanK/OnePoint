@@ -46,7 +46,7 @@ class TaskView: BaseView {
     }()
     
     private lazy var ivTaskDate = {
-       UIImageView(image: BBImage.btnInputCalendar.image())
+        UIImageView(image: BBImage.btnInputCalendar.image())
     }()
     
     private lazy var lblTaskStartEnd = {
