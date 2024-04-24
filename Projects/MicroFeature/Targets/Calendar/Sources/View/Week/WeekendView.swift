@@ -25,14 +25,14 @@ class WeekendView: BaseView, WeekendProxy {
         return WeekendView(isBindCall: false).apply {
             $0.initializeCall()
             LocalCalendarManger.shared.loadMonthly()
-            $0.backgroundColor = .red
+            $0.backgroundColor = .clear
         }
     }
     
     private lazy var vCollection = {
         return UICollectionView(frame: .zero,
                                 collectionViewLayout: self.collectionFlowLayout).apply {
-            $0.backgroundColor = BBColor.random.randomColor()
+            $0.backgroundColor = BBColor.clear.color()
             $0.showsHorizontalScrollIndicator = false
             $0.isPagingEnabled = true
             $0.register(WeekendViewCell.self, forCellWithReuseIdentifier: "WeekendViewCell")
@@ -48,6 +48,8 @@ class WeekendView: BaseView, WeekendProxy {
     lazy var viewModel = {
         CalendarViewModel(cancellable)
     }()
+    
+    var selectedWeek: IndexPath?
     
     override func bindView() {
         addSubview(vCollection)
@@ -101,6 +103,10 @@ extension WeekendView {
     func view() -> UIView {
         return self
     }
+    
+    func weekendHeight() -> CGFloat {
+        return (windowBounds().width / 375) * 45
+    }
 }
 
 extension WeekendView {
@@ -110,7 +116,6 @@ extension WeekendView {
         let startDayToWeek = Date().startOfWeek().string()
         var emptyCount = 0
         let index = LocalCalendarManger.shared.monthlyData.firstIndex { value in
-            debugPrint("=============== \(value)")
             if value.1 as? DailyEmptyModel != nil {
                 emptyCount += 1
             }
@@ -147,17 +152,20 @@ extension WeekendView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         if let model = LocalCalendarManger.shared.monthlyData[indexPath.row].1 as? DailyModel {
             cell.bindData(data: model)
         }
-//        cell.backgroundColor = BBColor.cRandom.randomColor()
+
+        if selectedWeek != nil, selectedWeek!.row == indexPath.row {
+            cell.selected()
+        } else {
+            cell.unSelected()
+        }
+        
         return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        debugPrint(#file, #function, #line)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if LocalCalendarManger.shared.monthlyData[indexPath.row].1 as? DailyModel != nil {
-            return .init(width: (self.width() - 7) / 7, height: WeekendViewCell.calculatorHeight())
+            
+            return .init(width: (self.width() - 7) / 7, height: self.weekendHeight())
         } else {
             return .zero
         }
@@ -169,5 +177,27 @@ extension WeekendView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        debugPrint(#file, #function, #line)
+        guard let cell = collectionView.cellForItem(at: indexPath) as? WeekendViewCell else {
+            return
+        }
+        
+        cell.selected()
+        
+        selectedWeek = indexPath
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        debugPrint(#file, #function, #line)
+        
+        guard selectedWeek != nil,
+              let cell = collectionView.cellForItem(at: selectedWeek!) as? WeekendViewCell else {
+            return
+        }
+        
+        cell.unSelected()
     }
 }

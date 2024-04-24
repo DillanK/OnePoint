@@ -58,7 +58,7 @@ public struct DailyModel: BaseModel, CalendarModelProtocol, CustomStringConverti
         return String(format: "%04d%02d%02d", self.year, self.month.value(), self.day)
     }
     
-    func isWeekend() -> Bool {
+    func isHoliday() -> Bool {
         return (weekend == .SAT || weekend == .SUN)
     }
 }

@@ -26,17 +26,41 @@ class AddEasyScheduleView: BaseView {
     
     private lazy var vBackground = {
         UIView().apply {
-            $0.backgroundColor = .black
-            $0.layer.cornerRadius = type.viewHeight()/2
+            $0.backgroundColor = BBColor.white.color()
+            $0.layer.cornerRadius = 6
+            $0.layer.borderColor = BBColor.brownGrey102.color().cgColor
+            $0.layer.borderWidth = 1
+            $0.isHidden = true
+        }
+    }()
+    
+    private lazy var lblTitle = {
+        UILabel().apply {
+            $0.text = "일정추가"
+            $0.textColor = BBColor.brownGrey.color()
+            $0.font = BBFont.NotoSansKR.regular.font(size: 12)
+            $0.backgroundColor = BBColor.white.color()
+            $0.textAlignment = .center
+            $0.isHidden = true
+        }
+    }()
+    
+    private lazy var btnAdd = {
+        UIButton().apply {
+            $0.addTarget(self, action: #selector(eventType), for: .touchUpInside)
+            $0.setImage(BBImage.mobileIconMainCaster.image(), for: .normal)
+            $0.titleLabel?.font = BBFont.NotoSansKR.medium.font(size: 14)
+            $0.imageView?.contentMode = .scaleAspectFill
         }
     }()
     
     private lazy var btnType = {
         UIButton().apply {
-            $0.setImage(UIImage(systemName: "xmark"), for: .normal)
-            $0.tintColor = .white
             $0.addTarget(self, action: #selector(eventType), for: .touchUpInside)
-            $0.transform = .init(rotationAngle: CGFloat.pi/4)
+            $0.setTitle("상세 +", for: .normal)
+            $0.titleLabel?.font = BBFont.NotoSansKR.medium.font(size: 14)
+            $0.setTitleColor(BBColor.deepSkyBlue.color(), for: .normal)
+            $0.isHidden = true
         }
     }()
     
@@ -64,14 +88,16 @@ class AddEasyScheduleView: BaseView {
     private var state: FoldState = .IN
     private var keyboardSize: CGRect = .zero
     
-//    private let DEF_HEIGHT: CGFloat = 48
     private let DEF_WIDTH: CGFloat = 48
+    private let DEF_HEIGHT: CGFloat = 48
     private let DEF_MARGIN: CGFloat = 12
     private let DEF_BOTTOM_MARGIN: CGFloat = 32
     private var cancelable = Set<AnyCancellable>()
     
     override func bindView() {
         addSubview(vBackground)
+        addSubview(lblTitle)
+        addSubview(btnAdd)
         vBackground.addSubview(btnType)
         vBackground.addSubview(tfName)
         vBackground.addSubview(vNameUnderLine)
@@ -114,23 +140,44 @@ class AddEasyScheduleView: BaseView {
     
     override func bindConstraint(_ isAdjustWindow: Bool) {
         vBackground.snp.remakeConstraints {
+            $0.top.equalToSuperview().offset(9)
+            $0.leading.equalToSuperview().offset(9)
+            $0.trailing.equalToSuperview().offset(-12)
+            if state == .IN {
+                $0.height.equalTo(DEF_HEIGHT)
+            } else if state == .OUT {
+                $0.height.equalTo(60)
+            }
+        }
+        
+        lblTitle.snp.remakeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(self.type.viewHeight())
+            $0.left.equalToSuperview().offset(18)
+            $0.width.equalTo(52)
+            $0.height.equalTo(18)
+        }
+        
+        btnAdd.snp.remakeConstraints {
+            $0.right.equalToSuperview()
+            $0.bottom.equalToSuperview()
+            $0.width.equalTo(DEF_WIDTH)
+            $0.height.equalTo(DEF_HEIGHT)
         }
         
         btnType.snp.remakeConstraints {
             $0.centerY.equalToSuperview()
-            $0.size.equalTo(DEF_WIDTH / 2)
-            $0.right.equalToSuperview().offset(-(DEF_WIDTH / 4))
+            $0.width.equalTo(DEF_WIDTH)
+            $0.height.equalTo(18)
+            $0.right.equalToSuperview().offset(-(self.DEF_WIDTH / 4))
         }
 
         self.snp.remakeConstraints {
             if state == .IN {
-                $0.width.height.equalTo(self.type.viewHeight())
+                $0.width.equalTo(DEF_WIDTH)
+                $0.height.equalTo(DEF_HEIGHT)
                 $0.bottom.equalToSuperview().offset(-self.safeArea().bottom)
             } else if state == .OUT {
-                $0.height.equalTo(self.type.viewHeight())
+                $0.height.equalTo(DEF_HEIGHT)
                 $0.width.equalTo(self.windowBounds().width - (DEF_MARGIN * 2))
                 $0.bottom.equalTo(self.keyboardLayoutGuide.snp.top)
             }
@@ -172,6 +219,8 @@ extension AddEasyScheduleView {
 extension AddEasyScheduleView {
     // Fold IN
     private func animateFoldIn() {
+        self.lblTitle.isHidden = true
+        
         UIView.animate(withDuration: 0.3, delay: 0.1, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut) {
             self.vBackground.snp.remakeConstraints {
                 $0.top.leading.trailing.equalToSuperview()
@@ -181,26 +230,33 @@ extension AddEasyScheduleView {
             self.snp.updateConstraints {
                 $0.width.height.equalTo(self.type.viewHeight())
             }
-            
-            self.btnType.transform = .init(rotationAngle: CGFloat.pi/4)
+
             self.superview?.layoutIfNeeded()
         }
     }
     
     private func animateFoldInWithName() {
+        btnAdd.isHidden = false
         tfName.isHidden = true
-        self.vNameUnderLine.isHidden = true
-        self.tfName.snp.removeConstraints()
-        self.vNameUnderLine.snp.removeConstraints()
-        self.layoutIfNeeded()
+        vBackground.isHidden = true
+        vNameUnderLine.isHidden = true
+        tfName.snp.removeConstraints()
+        vNameUnderLine.snp.removeConstraints()
+        layoutIfNeeded()
     }
     
     // Fold Out
     private func animateFoldOut() {
+        btnAdd.isHidden = true
+        vBackground.isHidden = false
+        btnType.isHidden = false
+        lblTitle.alpha = 0
+        
         UIView.animate(withDuration: 0.3, delay: 0.2, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut) {
+            
             self.vBackground.snp.remakeConstraints {
                 $0.leading.trailing.equalToSuperview()
-                $0.height.equalTo(self.type.viewHeight())
+                $0.height.equalTo(60)
             }
 
             self.snp.remakeConstraints {
@@ -209,21 +265,30 @@ extension AddEasyScheduleView {
                 $0.right.equalToSuperview().offset(-self.DEF_MARGIN)
                 $0.bottom.equalTo(self.keyboardLayoutGuide.snp.top)
             }
+            
+//            self.btnType.snp.remakeConstraints {
+//                $0.centerY.equalToSuperview()
+//                $0.width.equalTo(self.DEF_WIDTH)
+//                $0.height.equalTo(18)
+//                $0.right.equalToSuperview().offset(-(self.DEF_WIDTH / 4))
+//            }
 
-            self.btnType.transform = .identity
             self.layoutIfNeeded()
             self.superview?.layoutIfNeeded()
+        } completion: { isComplete in
+            self.lblTitle.isHidden = false
         }
     }
     
     private func animateFoldOutWithName() {
-        tfName.isHidden = true
+        lblTitle.isHidden = false
         
         UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut) {
+            self.lblTitle.alpha = 1
             self.tfName.snp.remakeConstraints {
-                $0.top.equalToSuperview().offset(self.type.viewHeight()/4)
-                $0.leading.equalTo(self.vBackground.snp.leading).offset(self.DEF_WIDTH / 2)
-                $0.trailing.equalTo(self.vBackground.snp.trailing).offset(-self.DEF_WIDTH)
+                $0.top.equalToSuperview()//.offset(self.type.viewHeight()/4)
+                $0.leading.equalTo(self.vBackground.snp.leading).offset(self.DEF_MARGIN)
+                $0.trailing.equalTo(self.vBackground.snp.trailing).offset(-self.DEF_MARGIN)
                 $0.height.equalTo(self.type.viewHeight()/2)
             }
             

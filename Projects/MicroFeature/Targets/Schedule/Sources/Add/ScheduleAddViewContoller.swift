@@ -10,10 +10,12 @@ import UIKit
 import BaseFramework
 import AssetFramework
 import Combine
+import CommonFramework
 
 public class ScheduleAddViewContoller: BaseViewController {
     public static func create() -> BaseViewController {
         return ScheduleAddViewContoller().apply {
+            $0.modalPresentationStyle = .fullScreen
             $0.view.backgroundColor = BBColor.white.color()
         }
     }
@@ -22,6 +24,10 @@ public class ScheduleAddViewContoller: BaseViewController {
     
     private lazy var vmTitle = {
         TitleViewModel(self.cancellable)
+    }()
+    
+    private lazy var vmTask = {
+        TaskViewModel(self.cancellable)
     }()
     
     private lazy var vmReminder = {
@@ -39,13 +45,17 @@ public class ScheduleAddViewContoller: BaseViewController {
     private lazy var vmJob = {
         JobViewModel(self.cancellable)
     }()
-    
+
     private lazy var vTitle = {
         TitleView.create(vm: self.vmTitle)
     }()
     
     private lazy var vTask = {
-        TaskView.create()
+        TaskView.create(vm: vmTask)
+    }()
+    
+    private lazy var vTaskDateTime = {
+        TaskDateTimeView.create(vm: vmTask)
     }()
     
     private lazy var vReminder = {
@@ -82,19 +92,22 @@ public class ScheduleAddViewContoller: BaseViewController {
         view.addSubview(vTitle)
         view.addSubview(vScrollGroup)
         vScrollGroup.addSubview(vTask)
+        vScrollGroup.addSubview(vTaskDateTime)
         vScrollGroup.addSubview(vReminder)
         vScrollGroup.addSubview(vRepeatedly)
         vScrollGroup.addSubview(vColor)
         vScrollGroup.addSubview(vJob)
         vScrollGroup.addSubview(vShare)
         view.addSubview(vAddEvent)
+        
+        vTaskDateTime.isHidden = true
     }
     
     public override func bindEvent() {
-        view.addGestureRecognizer(
-            UITapGestureRecognizer(target: self,
-                                   action: #selector(tapGesture))
-        )
+//        view.addGestureRecognizer(
+//            UITapGestureRecognizer(target: self,
+//                                   action: #selector(tapGesture))
+//        )
     }
     
     public override func bindCombine() {
@@ -102,6 +115,17 @@ public class ScheduleAddViewContoller: BaseViewController {
             switch $0 {
             case .CLOSE:
                 self.dismiss(animated: true)
+            }
+        }.store(in: &cancellable)
+        
+        vmTask.output.resSelected.sink {
+            switch $0 {
+            case .SELECTED_TASK_START(let model):
+                debugPrint(#file, #function, #line)
+                self.openDateTimeView(isOpen: true, model: model)
+            case .SELECTED_TASK_END(let model):
+                debugPrint(#file, #function, #line)
+                self.openDateTimeView(isOpen: true, model: model)
             }
         }.store(in: &cancellable)
         
@@ -126,7 +150,8 @@ public class ScheduleAddViewContoller: BaseViewController {
     
     public override func bindConstraint() {
         vTitle.snp.makeConstraints {
-            $0.top.left.right.equalToSuperview()
+            $0.top.equalToSuperview()
+            $0.left.right.equalToSuperview()
         }
         
         vAddEvent.snp.makeConstraints {
@@ -136,7 +161,7 @@ public class ScheduleAddViewContoller: BaseViewController {
         vScrollGroup.snp.makeConstraints {
             $0.top.equalTo(vTitle.snp.bottom)
             $0.left.right.equalToSuperview()
-            $0.bottom.equalTo(self.view.keyboardLayoutGuide.snp.top)//vAddEvent.snp.top)
+            $0.bottom.equalTo(self.view.keyboardLayoutGuide.snp.top)
         }
         
         vTask.snp.makeConstraints {
@@ -145,8 +170,14 @@ public class ScheduleAddViewContoller: BaseViewController {
             $0.width.equalTo(self.view.windowBounds().width)
         }
         
-        vReminder.snp.makeConstraints {
+        vTaskDateTime.snp.makeConstraints {
             $0.top.equalTo(vTask.snp.bottom)
+            $0.left.right.equalToSuperview()
+            $0.height.equalTo(0)
+        }
+
+        vReminder.snp.makeConstraints {
+            $0.top.equalTo(vTaskDateTime.snp.bottom)
             $0.left.right.equalToSuperview()
         }
         
@@ -170,12 +201,31 @@ public class ScheduleAddViewContoller: BaseViewController {
             $0.left.right.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
-        
-        
     }
 }
 
 extension ScheduleAddViewContoller {
+    private func openDateTimeView(isOpen: Bool, model: DailyModel) {
+        if isOpen {
+            vTaskDateTime.snp.remakeConstraints {
+                $0.top.equalTo(vTask.snp.bottom)
+                $0.left.right.equalToSuperview()
+            }
+            vTaskDateTime.isHidden = false
+        } else {
+            vTaskDateTime.snp.remakeConstraints {
+                $0.top.equalTo(vTask.snp.bottom)
+                $0.left.right.equalToSuperview()
+                $0.height.equalTo(0)
+            }
+            vTaskDateTime.isHidden = true
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.vScrollGroup.layoutIfNeeded()
+        }
+    }
+    
     @objc func tapGesture() {
         self.view.endEditing(true)
     }

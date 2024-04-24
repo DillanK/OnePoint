@@ -12,4 +12,8 @@ public extension Date {
     static func timeStamp() -> String {
         return String(Date().timeIntervalSince1970)
     }
+    
+    func formatter(format: String) {
+        
+    }
 }

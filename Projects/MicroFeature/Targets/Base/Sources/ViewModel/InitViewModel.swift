@@ -16,6 +16,7 @@ public class InitViewModel: BaseViewModel {
 
 extension InitViewModel: BaseViewModelProtocol {
     enum Request {
+        case initData
         case bindView
         case bindEvent
         case bindCombine

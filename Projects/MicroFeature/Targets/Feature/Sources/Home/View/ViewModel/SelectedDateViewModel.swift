@@ -14,21 +14,31 @@ public class SelectedDateViewModel: BaseViewModel {
     public var input = Input()
     public var output = Output()
     
+    private var selectedDate: Date = Date.now
+    
     public override func bindInputCombine() {
-        input.clickEvent
+        input.observeRequest
             .throttle(for: 0.2, scheduler: RunLoop.main, latest: true)
             .sink { type in
                 switch type {
-                case .SELECTED_DATE:
-                    self.output.clickEvent.send(.NONE)
+                case .SELECTED_DATE(let date):
+                    self.selectedDate(date)
+                case .PREV_DATE:
+                    self.selectedDate(Date.calculationDay(
+                        isBefore: true, referenceDate: self.selectedDate, day: 1
+                    ))
+                case .NEXT_DATE:
+                    self.selectedDate(Date.calculationDay(
+                        isBefore: false, referenceDate: self.selectedDate, day: 1
+                    ))
                 case .SELECTED_SCHEDULE_INFO:
-                    self.output.clickEvent.send(.NONE)
+                    self.output.observeResponse.send(.NONE)
                 case .SHOW_CALENDAR:
-                    self.output.clickEvent.send(.NONE)
+                    self.output.observeResponse.send(.NONE)
                 case .SHOW_COMPLETE:
-                    self.output.clickEvent.send(.NONE)
+                    self.output.observeResponse.send(.NONE)
                 case .SHOW_IN_PROGRESS:
-                    self.output.clickEvent.send(.NONE)
+                    self.output.observeResponse.send(.NONE)
                 }
             }
             .store(in: &cancellable)
@@ -37,7 +47,9 @@ public class SelectedDateViewModel: BaseViewModel {
 
 extension SelectedDateViewModel: BaseViewModelProtocol {
     enum Request {
-        case SELECTED_DATE
+        case SELECTED_DATE(Date)
+        case PREV_DATE
+        case NEXT_DATE
         case SELECTED_SCHEDULE_INFO
         case SHOW_CALENDAR
         case SHOW_COMPLETE
@@ -46,16 +58,17 @@ extension SelectedDateViewModel: BaseViewModelProtocol {
     
     enum Response {
         case NONE
-        case LOAD_SCHEDULE
+        case SELECTED_DATE(isToday: Bool, date: String, week: String)
+        case LOAD_SCHEDULE(String, String)
         case SHOW_CALENDAR
     }
     
     public struct Input {
-        let clickEvent = PassthroughSubject<Request, Never>()
+        let observeRequest = PassthroughSubject<Request, Never>()
     }
     
     public struct Output {
-        let clickEvent = PassthroughSubject<Response, Never>()
+        let observeResponse = PassthroughSubject<Response, Never>()
     }
 }
 
@@ -75,6 +88,32 @@ extension SelectedDateViewModel {
     }
     
     private func makeScheduleAttribute(type: AttributeType, count: Int) {
+        
+    }
+}
+
+extension SelectedDateViewModel {
+    /// 선택된 일자
+    /// - Parameter date: 선택된 일자
+    func selectedDate(_ date: Date?) {
+        guard let validDate = date else {
+            return
+        }
+        
+        self.selectedDate = validDate
+        
+        output.observeResponse.send(.SELECTED_DATE(
+            isToday: validDate.string() == Date.now.string(),
+            date: validDate.string(format: "yyyy.MM.dd"),
+            week: validDate.string(format: "E")
+        ))
+        
+        loadSchedule(validDate)
+    }
+    
+    /// 선택된 일정을 불러온다.
+    /// - Parameter date: 선택된 일자
+    func loadSchedule(_ date: Date) {
         
     }
 }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 55;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,7 @@
 		24D85CFA10B37BA77D9025C8 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C03D88E1B83E2F0D2C888E3 /* CalendarViewController.swift */; };
 		25EB14BB7C5EAE6C70206352 /* FeatureProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F824F3418C976CAC1E54D4 /* FeatureProxy.swift */; };
 		26DA3C109C73FAF308A86592 /* SelectedDateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BC61883AC24B2BC8071DD8 /* SelectedDateView.swift */; };
+		284CDCEE8CFE7C972A8CF79F /* TaskTimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95AFAA47655C0B78B9B2D23 /* TaskTimeModel.swift */; };
 		2AC2D96EBDD4C9C258CD9774 /* WeekendView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 548910D08D1CD8D10B3CFB9E /* WeekendView.swift */; };
 		2F3FD8C35EF18759D7A9F461 /* MonthlyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A8E0BC9CBA7C743A3D658D /* MonthlyModel.swift */; };
 		30AD9EB9729B9846CFF9A930 /* CoreFramework.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 2AF0DD423981BE3B3F752B0A /* CoreFramework.framework */; };
@@ -65,8 +66,10 @@
 		854142F7AD965F154AC4901B /* ShareType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363F64F65C95B24638E2797A /* ShareType.swift */; };
 		87940A619C1DBD1CEE9B00EF /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1C8C5965C986D5AE9757C9 /* Date+Extension.swift */; };
 		8B2D49ECD51770D04608A577 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DB8E34B7B5FD6977F9586E /* HomeViewController.swift */; };
+		8D682BF4DDA78328585F2F85 /* CalendarTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8234FC1AFDD1BA77329BDCCA /* CalendarTopViewModel.swift */; };
 		8D958C055EB88973085575C3 /* AddEasyScheduleType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACFDF5AE4BC48AD532E2C8F /* AddEasyScheduleType.swift */; };
 		8FFDF62736E3456647026645 /* BaseFramework.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 94D671DB6BBB963ECEC9CDEC /* BaseFramework.framework */; };
+		903C947CEE32FF8982CDFA1B /* TimeViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01C6655F14C8050045D7C887 /* TimeViewCell.swift */; };
 		92C4CAD827CA11E4DA40A853 /* Kingfisher.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 0553573F190DFA49A14C58D9 /* Kingfisher.framework */; };
 		95626108E155C258E5555573 /* CoreFramework.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 2AF0DD423981BE3B3F752B0A /* CoreFramework.framework */; };
 		986F91D955885F7B919E1246 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC4F5AC1197D79E225AAEEC /* BaseModel.swift */; };
@@ -79,21 +82,24 @@
 		AD448B9E35B5F224FE13E71D /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE000FF8D18AB44B92844DFF /* CalendarViewModel.swift */; };
 		ADD39B4564DA8180F99CF354 /* ScheduleAddViewContoller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1E0E70D81ECCDA44403B4B /* ScheduleAddViewContoller.swift */; };
 		B51F43331FA1353DB9DBDDC1 /* InitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53231DB3059CB37CCCE4E5A /* InitViewModel.swift */; };
+		B7718D2AD8A50D8C49D248C8 /* ScheduleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EAADA1068B726ABA34A965C /* ScheduleModel.swift */; };
 		B880CE81CAD14F4C74B4B93B /* ScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C271121150E3472A8B49059C /* ScheduleViewController.swift */; };
 		B8EF51067FEAE84EC37EE3A7 /* Kingfisher.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 0553573F190DFA49A14C58D9 /* Kingfisher.framework */; };
 		BA5496ACF4F368754B984893 /* DailyEmptyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F16BA6FCD18DD1031A626EE /* DailyEmptyModel.swift */; };
 		BC90EEAAAC8FBFA681FE9364 /* ScheduleListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EE4AEFE378295031E052574 /* ScheduleListViewCell.swift */; };
 		BCFFF53DB5A968160AE13710 /* SampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8202D889A92768CFB74960F9 /* SampleViewController.swift */; };
 		BFDC8125A5C293332B4D98DF /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8770F8A5E90BA538B31901E9 /* BaseCollectionViewCell.swift */; };
-		C860EAFD2BADE18C0082CBD4 /* CalendarTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C860EAFC2BADE18C0082CBD4 /* CalendarTopViewModel.swift */; };
 		C955DBDC0C661F078B7725E6 /* ColorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B047336579625C0046FBE828 /* ColorViewCell.swift */; };
 		CE12BF510AD825FA398BEDAD /* DailyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6771EE35A5CF4A86EF72622B /* DailyModel.swift */; };
 		CEFF2EA4DF148AFC4E4D1DC7 /* BaseFramework.framework in Dependencies */ = {isa = PBXBuildFile; fileRef = 94D671DB6BBB963ECEC9CDEC /* BaseFramework.framework */; };
 		CF30577066FC947E9A058686 /* DailyModelAsyncFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926FFAED7E88F79C7A95D08A /* DailyModelAsyncFetcher.swift */; };
 		CF3426C029261FB4D419915C /* ReminderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9532F191258FBCB35D58639A /* ReminderView.swift */; };
+		D24C120AE18BEA7B77B2D312 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81A40C466CE5859508D14EF /* TaskViewModel.swift */; };
+		D3319FCAD7BB841CDE1493AD /* TaskDateTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ADBCDC951BFB87D6A9761CB /* TaskDateTimeView.swift */; };
 		D467DFA7AE3B33A5891B3EDB /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E896FCD6E43DA19FBDF3DFA3 /* ShareModel.swift */; };
 		DECBCE176DA2F30F14250F62 /* ShareModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4053696561C1E451892947C6 /* ShareModel.swift */; };
 		E0A4D60D5C03F68418D2D68B /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECFE701502E952EC59CC997 /* AddEventView.swift */; };
+		E156CF94F0D0FC5CC21ADEEE /* ScheduleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491E66ED160F111551FFAD70 /* ScheduleViewModel.swift */; };
 		E689D1CE55C303996E105F99 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D05D895C507425D7C9A7EC /* ColorView.swift */; };
 		E83BD377DA61B68FA1A3F52E /* LocalCalendarManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDB31BCF71EB7B253018EF91 /* LocalCalendarManger.swift */; };
 		EA54A56EFBDC4D82BBE8A86F /* DailyProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11AE0618B39528964D75CD82 /* DailyProxy.swift */; };
@@ -283,6 +289,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		01C6655F14C8050045D7C887 /* TimeViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeViewCell.swift; sourceTree = "<group>"; };
 		0553573F190DFA49A14C58D9 /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BCBBC61B4CC32B45C016037 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0C900C645E3B88F7BFD915E8 /* DaliyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaliyView.swift; sourceTree = "<group>"; };
@@ -294,6 +301,7 @@
 		1F474E6AC498B8E2BC1A8F6A /* ColorPickerFramework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "ColorPickerFramework-Info.plist"; sourceTree = "<group>"; };
 		264CFA56594F66D319BB567F /* JobModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobModel.swift; sourceTree = "<group>"; };
 		27844847FFE9B4C1EA3CA576 /* STG.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = STG.xcconfig; sourceTree = "<group>"; };
+		2ADBCDC951BFB87D6A9761CB /* TaskDateTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDateTimeView.swift; sourceTree = "<group>"; };
 		2AF0DD423981BE3B3F752B0A /* CoreFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2AF6E48019CD10F3BD388C9E /* ScheduleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListView.swift; sourceTree = "<group>"; };
 		2F1C8C5965C986D5AE9757C9 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
@@ -304,9 +312,11 @@
 		3C03D88E1B83E2F0D2C888E3 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		3DECC3755FFD9E38384F5C98 /* SelectedDateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDateViewModel.swift; sourceTree = "<group>"; };
 		3E79CB936C84E57DFFE9B71F /* JobViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobViewModel.swift; sourceTree = "<group>"; };
+		3EAADA1068B726ABA34A965C /* ScheduleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleModel.swift; sourceTree = "<group>"; };
 		4053696561C1E451892947C6 /* ShareModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareModel.swift; sourceTree = "<group>"; };
 		479F26C5D1CB42781F0B8A5A /* TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopView.swift; sourceTree = "<group>"; };
 		48DB8E34B7B5FD6977F9586E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		491E66ED160F111551FFAD70 /* ScheduleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewModel.swift; sourceTree = "<group>"; };
 		4C59945B4C40EF5CA49B7BA9 /* JobModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobModel.swift; sourceTree = "<group>"; };
 		4DCCD21ABFE6ECA970553201 /* LocalizeStringFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LocalizeStringFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4EE4AEFE378295031E052574 /* ScheduleListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleListViewCell.swift; sourceTree = "<group>"; };
@@ -326,6 +336,7 @@
 		79360A07ECC79C0211909A73 /* ColorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorViewModel.swift; sourceTree = "<group>"; };
 		808F1FCD6C4CEE57AD9157D4 /* CommonFramework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "CommonFramework-Info.plist"; sourceTree = "<group>"; };
 		8202D889A92768CFB74960F9 /* SampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleViewController.swift; sourceTree = "<group>"; };
+		8234FC1AFDD1BA77329BDCCA /* CalendarTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTopViewModel.swift; sourceTree = "<group>"; };
 		84243EC395CCAD36724C5B1A /* RepeatedlyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatedlyViewModel.swift; sourceTree = "<group>"; };
 		8770F8A5E90BA538B31901E9 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		8956639EF778325E53FFF837 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -362,11 +373,12 @@
 		BF13EE1B5DB44E534E01D666 /* Weekend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weekend.swift; sourceTree = "<group>"; };
 		C271121150E3472A8B49059C /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
 		C5EF4FA2CDD3C5DD8E5FE73F /* BaseTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTopView.swift; sourceTree = "<group>"; };
-		C860EAFC2BADE18C0082CBD4 /* CalendarTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTopViewModel.swift; sourceTree = "<group>"; };
+		C81A40C466CE5859508D14EF /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		C9D414011A4DA8E9A3018484 /* CalendarModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModelProtocol.swift; sourceTree = "<group>"; };
 		CBA6407D9A04A84A4D85F1C9 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDB31BCF71EB7B253018EF91 /* LocalCalendarManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCalendarManger.swift; sourceTree = "<group>"; };
 		D121C5970F285B80B06C561C /* BaseFramework-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "BaseFramework-Info.plist"; sourceTree = "<group>"; };
+		D95AFAA47655C0B78B9B2D23 /* TaskTimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeModel.swift; sourceTree = "<group>"; };
 		DBAE597013413E541791A860 /* ResponeLocalCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponeLocalCalendar.swift; sourceTree = "<group>"; };
 		DCAE700A65A539583B5D02B1 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 		E53231DB3059CB37CCCE4E5A /* InitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitViewModel.swift; sourceTree = "<group>"; };
@@ -483,6 +495,7 @@
 			children = (
 				B047336579625C0046FBE828 /* ColorViewCell.swift */,
 				6046AF852FC7B80C8A108C75 /* JobViewCell.swift */,
+				01C6655F14C8050045D7C887 /* TimeViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -627,6 +640,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4FD4FFBD9A81DD07A0513C10 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				8234FC1AFDD1BA77329BDCCA /* CalendarTopViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		55C90D9D0B5EE1602F81A903 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -642,6 +663,8 @@
 				3E79CB936C84E57DFFE9B71F /* JobViewModel.swift */,
 				B38DCAB419837C32FB656E2B /* ReminderViewModel.swift */,
 				84243EC395CCAD36724C5B1A /* RepeatedlyViewModel.swift */,
+				491E66ED160F111551FFAD70 /* ScheduleViewModel.swift */,
+				C81A40C466CE5859508D14EF /* TaskViewModel.swift */,
 				73243CED75356E3E4166B7C8 /* TitleViewModel.swift */,
 			);
 			path = ViewModel;
@@ -704,6 +727,7 @@
 				9532F191258FBCB35D58639A /* ReminderView.swift */,
 				534DC1BDE94D399EBB3E742F /* RepeatedlyView.swift */,
 				3A50599F1C67A8606383EF64 /* ShareView.swift */,
+				2ADBCDC951BFB87D6A9761CB /* TaskDateTimeView.swift */,
 				355257C482674C121F02A5B6 /* TaskPickerView.swift */,
 				DCAE700A65A539583B5D02B1 /* TaskView.swift */,
 				9AD402D91F013A05CB3D7F8B /* TitleView.swift */,
@@ -723,8 +747,8 @@
 		91C5E17F346CB2A941079545 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				C860EAFB2BADE1640082CBD4 /* ViewModel */,
 				3C730DE90194A0ABA1656639 /* View */,
+				4FD4FFBD9A81DD07A0513C10 /* ViewModel */,
 				3C03D88E1B83E2F0D2C888E3 /* CalendarViewController.swift */,
 			);
 			path = Calendar;
@@ -825,14 +849,6 @@
 			path = Base;
 			sourceTree = "<group>";
 		};
-		C860EAFB2BADE1640082CBD4 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				C860EAFC2BADE18C0082CBD4 /* CalendarTopViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		C8CAD32737476F37F340846B = {
 			isa = PBXGroup;
 			children = (
@@ -846,7 +862,9 @@
 			isa = PBXGroup;
 			children = (
 				4C59945B4C40EF5CA49B7BA9 /* JobModel.swift */,
+				3EAADA1068B726ABA34A965C /* ScheduleModel.swift */,
 				E896FCD6E43DA19FBDF3DFA3 /* ShareModel.swift */,
+				D95AFAA47655C0B78B9B2D23 /* TaskTimeModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1056,6 +1074,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				ORGANIZATIONNAME = Beakbig;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = F8BDFB4A8EF4F82CA0D848ED /* Build configuration list for PBXProject "MicroFeature" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -1199,13 +1219,13 @@
 			files = (
 				24D85CFA10B37BA77D9025C8 /* CalendarViewController.swift in Sources */,
 				59CD37ADF9B194EA33EEDA0B /* CalendarTopView.swift in Sources */,
+				8D682BF4DDA78328585F2F85 /* CalendarTopViewModel.swift in Sources */,
 				25EB14BB7C5EAE6C70206352 /* FeatureProxy.swift in Sources */,
 				8B2D49ECD51770D04608A577 /* HomeViewController.swift in Sources */,
 				26DA3C109C73FAF308A86592 /* SelectedDateView.swift in Sources */,
 				1D7A15F24823975E52F51603 /* TopView.swift in Sources */,
 				75585AC0EE6011FA0BE8CEBA /* SelectedDateViewModel.swift in Sources */,
 				9DA51046AC9812A4E3566D90 /* TopViewModel.swift in Sources */,
-				C860EAFD2BADE18C0082CBD4 /* CalendarTopViewModel.swift in Sources */,
 				BCFFF53DB5A968160AE13710 /* SampleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1215,16 +1235,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				5811F2960B6B96651DC2CBEF /* JobModel.swift in Sources */,
+				B7718D2AD8A50D8C49D248C8 /* ScheduleModel.swift in Sources */,
 				D467DFA7AE3B33A5891B3EDB /* ShareModel.swift in Sources */,
+				284CDCEE8CFE7C972A8CF79F /* TaskTimeModel.swift in Sources */,
 				ADD39B4564DA8180F99CF354 /* ScheduleAddViewContoller.swift in Sources */,
 				E0A4D60D5C03F68418D2D68B /* AddEventView.swift in Sources */,
 				C955DBDC0C661F078B7725E6 /* ColorViewCell.swift in Sources */,
 				532D71FC85F7EB77B0101F59 /* JobViewCell.swift in Sources */,
+				903C947CEE32FF8982CDFA1B /* TimeViewCell.swift in Sources */,
 				E689D1CE55C303996E105F99 /* ColorView.swift in Sources */,
 				5EF95592572773A527B3E6E7 /* JobView.swift in Sources */,
 				CF3426C029261FB4D419915C /* ReminderView.swift in Sources */,
 				47F398CE0D2D21D1AF3EB00F /* RepeatedlyView.swift in Sources */,
 				6B1B9F2D0BC723CA72B516FC /* ShareView.swift in Sources */,
+				D3319FCAD7BB841CDE1493AD /* TaskDateTimeView.swift in Sources */,
 				FD44EDF0D40C5E538E79AEAB /* TaskPickerView.swift in Sources */,
 				11B166759BBB111A5CEE4F51 /* TaskView.swift in Sources */,
 				AA4B9D44D76040ABE62792AB /* TitleView.swift in Sources */,
@@ -1232,6 +1256,8 @@
 				14B9463EFF38B5645662B45F /* JobViewModel.swift in Sources */,
 				795D707DD3234FE6BB461D50 /* ReminderViewModel.swift in Sources */,
 				0B8509D2AE08963F1CBB6A3A /* RepeatedlyViewModel.swift in Sources */,
+				E156CF94F0D0FC5CC21ADEEE /* ScheduleViewModel.swift in Sources */,
+				D24C120AE18BEA7B77B2D312 /* TaskViewModel.swift in Sources */,
 				1FC27AF53D2A75913F2B54B8 /* TitleViewModel.swift in Sources */,
 				8D958C055EB88973085575C3 /* AddEasyScheduleType.swift in Sources */,
 				854142F7AD965F154AC4901B /* ShareType.swift in Sources */,
@@ -1309,7 +1335,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1343,7 +1372,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1470,7 +1502,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1504,7 +1539,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1538,7 +1576,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1605,7 +1646,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1705,7 +1749,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1772,7 +1819,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1872,7 +1922,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -1972,7 +2025,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2039,7 +2095,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -2073,7 +2132,10 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) DEBUG";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = (
+					"$(inherited)",
+					DEBUG,
+				);
 				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;

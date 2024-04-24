@@ -58,10 +58,21 @@ class TopView: BaseView {
     }
     
     /// Init Call Step3(Combine, Delegate 제약사항 추가)
-    override func bindCombine() { }
+    override func bindCombine() {
+//        viewModel.output.observeResponseUI.sink { type in
+//            switch type {
+//            case .TODAY(let today, let week):
+//                self.btnCalendar.setTitle(today, for: .normal)
+//            }
+//        }.store(in: &cancellable)
+    }
     
     /// Init Call Step4(View의 위치 및 제약사항 추가)
     override func bindConstraint(_ isAdjustWindow: Bool) {
+        if isAdjustWindow {
+            return
+        }
+        
         btnCalendar.snp.makeConstraints {
             $0.right.equalTo(self.snp.right).offset(-12)
             $0.top.bottom.equalToSuperview()
@@ -85,16 +96,16 @@ class TopView: BaseView {
 extension TopView {
     @objc func eventAddSchedule(_ sender: UIButton) {
         debugPrint(#file, #function, #line)
-        viewModel.input.clickEvent.send(.ADD_SCHEDULE)
+        viewModel.input.observeRequest.send(.ADD_SCHEDULE)
     }
     
     @objc func eventSetting(_ sender: UIButton) {
         debugPrint(#file, #function, #line)
-        viewModel.input.clickEvent.send(.SETTING)
+        viewModel.input.observeRequest.send(.SETTING)
     }
     
     @objc func eventSearch(_ sender: UIButton) {
         debugPrint(#file, #function, #line)
-        viewModel.input.clickEvent.send(.SEARCH)
+        viewModel.input.observeRequest.send(.SEARCH)
     }
 }

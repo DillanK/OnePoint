@@ -9,22 +9,23 @@
 import Foundation
 import BaseFramework
 import Combine
+import CoreFramework
 
 public class TopViewModel: BaseViewModel {
     public var input = Input()
     public var output = Output()
     
     public override func bindInputCombine() {
-        input.clickEvent
+        input.observeRequest
             .throttle(for: 0.2, scheduler: RunLoop.main, latest: true)
             .sink { type in
                 switch type {
                 case .ADD_SCHEDULE:
-                    self.output.clickEvent.send(.ADD_SCHEDULE)
+                    self.output.observeResponse.send(.ADD_SCHEDULE)
                 case .SETTING:
-                    self.output.clickEvent.send(.SETTING)
+                    self.output.observeResponse.send(.SETTING)
                 case .SEARCH:
-                    self.output.clickEvent.send(.SEARCH)
+                    self.output.observeResponse.send(.SEARCH)
                 }
             }
             .store(in: &cancellable)
@@ -43,12 +44,12 @@ extension TopViewModel: BaseViewModelProtocol {
         case SETTING
         case SEARCH
     }
-    
+
     public struct Input {
-        let clickEvent = PassthroughSubject<Request, Never>()
+        let observeRequest = PassthroughSubject<Request, Never>()
     }
     
     public struct Output {
-        let clickEvent = PassthroughSubject<Response, Never>()
+        let observeResponse = PassthroughSubject<Response, Never>()
     }
 }

@@ -13,159 +13,305 @@ import CommonFramework
 import LocalizeStringFramework
 
 class TaskView: BaseView {
-    static func create() -> BaseView {
+    static func create(vm: TaskViewModel) -> BaseView {
         return TaskView(isBindCall: false).apply {
             $0.backgroundColor = BBColor.white.color()
+            $0.vm = vm
             $0.initializeCall()
         }
     }
     
-    private lazy var lblTaskDate = {
+    private var vm: TaskViewModel!
+    
+    private lazy var lblTaskStart = {
         UILabel().apply {
-            $0.text = BBString.date
+            $0.text = "시작일"
             $0.textColor = BBColor.brownGrey.color()
             $0.font = BBFont.NotoSansKR.regular.font(size: 12)
         }
     }()
     
-    private lazy var btnTaskDate = {
-        UIButton(type: .system).apply {
-            $0.contentHorizontalAlignment = .left
-            $0.layer.borderColor = BBColor.veryLightPink226.color().cgColor
-            $0.layer.borderWidth = 1
+    private lazy var vStartGroup = {
+        UIView().apply {
+            $0.backgroundColor = BBColor.white.color()
+            $0.layer.masksToBounds = true
             $0.layer.cornerRadius = 4
+            $0.layer.borderColor = BBColor.paleGrey239.color().cgColor
+            $0.layer.borderWidth = 1
         }
     }()
     
-    private lazy var lblTaskDateValue = {
+    private lazy var lblStartDate = {
         UILabel().apply {
+            $0.font = BBFont.NotoSansKR.regular.font(size: 13)
+            $0.textColor = BBColor.black51.color()
             $0.text = "2023-11-22"
-            $0.textColor = BBColor.black51.color()
-            $0.font = BBFont.NotoSansKR.regular.font(size: 13)
         }
     }()
     
-    private lazy var ivTaskDate = {
-        UIImageView(image: BBImage.btnInputCalendar.image())
+    private lazy var ivStartDateIcon = {
+        UIImageView().apply {
+            $0.image = BBImage.btnInputCalendar.image()
+        }
     }()
     
-    private lazy var lblTaskStartEnd = {
+    private lazy var lblStartTime = {
         UILabel().apply {
-            $0.text = BBString.startEndTime
+            $0.font = BBFont.NotoSansKR.regular.font(size: 13)
+            $0.textColor = BBColor.black51.color()
+            $0.text = "오전 11:12"
+        }
+    }()
+    
+    private lazy var ivStartTimeIcon = {
+        UIImageView().apply {
+            $0.image = BBImage.btnInputTime.image()
+        }
+    }()
+    
+    private lazy var btnStart = {
+        UIButton(type: .system)
+    }()
+    
+    private lazy var lblConnect = {
+        UILabel().apply {
+            $0.font = BBFont.NotoSansKR.medium.font(size: 13)
+            $0.textColor = BBColor.black51.color()
+            $0.text = "~"
+        }
+    }()
+    
+    private lazy var lblTaskEnd = {
+        UILabel().apply {
+            $0.text = "종료일"
             $0.textColor = BBColor.brownGrey.color()
             $0.font = BBFont.NotoSansKR.regular.font(size: 12)
         }
     }()
     
-    private lazy var btnTaskStartEnd = {
-        UIButton(type: .system).apply {
-            $0.layer.borderColor = BBColor.veryLightPink226.color().cgColor
-            $0.layer.borderWidth = 1
+    private lazy var vEndGroup = {
+        UIView().apply {
+            $0.backgroundColor = BBColor.white.color()
+            $0.layer.masksToBounds = true
             $0.layer.cornerRadius = 4
-        }
-    }()
-    private lazy var lblTaskStartEndValue = {
-        UILabel().apply {
-            $0.text = "10:30 ~ 14:00"
-            $0.textColor = BBColor.black51.color()
-            $0.font = BBFont.NotoSansKR.regular.font(size: 13)
+            $0.layer.borderColor = BBColor.paleGrey239.color().cgColor
+            $0.layer.borderWidth = 1
         }
     }()
     
-    private lazy var ivTaskStartEnd = {
-        UIImageView(image: BBImage.btnInputTime.image())
+    private lazy var lblEndDate = {
+        UILabel().apply {
+            $0.font = BBFont.NotoSansKR.regular.font(size: 13)
+            $0.textColor = BBColor.black51.color()
+            $0.text = "2023-11-22"
+        }
+    }()
+    
+    private lazy var ivEndDateIcon = {
+        UIImageView().apply {
+            $0.image = BBImage.btnInputCalendar.image()
+        }
+    }()
+    
+    private lazy var lblEndTime = {
+        UILabel().apply {
+            $0.font = BBFont.NotoSansKR.regular.font(size: 13)
+            $0.textColor = BBColor.black51.color()
+            $0.text = "오후 12:12"
+        }
+    }()
+    
+    private lazy var ivEndTimeIcon = {
+        UIImageView().apply {
+            $0.image = BBImage.btnInputTime.image()
+        }
+    }()
+    
+    private lazy var btnEnd = {
+        UIButton(type: .system)
     }()
     
     override func bindView() {
-        addSubview(lblTaskDate)
-        addSubview(btnTaskDate)
-        btnTaskDate.addSubview(lblTaskDateValue)
-        btnTaskDate.addSubview(ivTaskDate)
-        addSubview(lblTaskStartEnd)
-        addSubview(btnTaskStartEnd)
-        btnTaskStartEnd.addSubview(lblTaskStartEndValue)
-        btnTaskStartEnd.addSubview(ivTaskStartEnd)
+        addSubview(lblTaskStart)
+        addSubview(vStartGroup)
+        vStartGroup.addSubview(lblStartDate)
+        vStartGroup.addSubview(ivStartDateIcon)
+        vStartGroup.addSubview(lblStartTime)
+        vStartGroup.addSubview(ivStartTimeIcon)
+        vStartGroup.addSubview(btnStart)
+        
+        addSubview(lblConnect)
+        
+        addSubview(lblTaskEnd)
+        addSubview(vEndGroup)
+        vEndGroup.addSubview(lblEndDate)
+        vEndGroup.addSubview(ivEndDateIcon)
+        vEndGroup.addSubview(lblEndTime)
+        vEndGroup.addSubview(ivEndTimeIcon)
+        vEndGroup.addSubview(btnEnd)
     }
     
     override func bindEvent() {
-        btnTaskDate.addTarget(self, action: #selector(eventTaskStart(_:)), for: .touchUpInside)
-        btnTaskStartEnd.addTarget(self, action: #selector(eventTaskEnd(_:)), for: .touchUpInside)
+        btnStart.addTarget(self, action: #selector(eventTaskStart(_:)), for: .touchUpInside)
+        btnEnd.addTarget(self, action: #selector(eventTaskEnd(_:)), for: .touchUpInside)
     }
     
     override func bindCombine() {
-        
+        vm.output.res.sink {
+            switch $0 {
+            case .CHANGE_TASK_START(let model):
+                debugPrint(#file, #function, #line)
+                self.changeDateTime(
+                    targetDate: self.lblStartDate, targetTime: self.lblStartTime, model: model
+                )
+            case .CHANGE_TASK_END(let model):
+                debugPrint(#file, #function, #line)
+                self.changeDateTime(
+                    targetDate: self.lblEndDate, targetTime: self.lblEndTime, model: model
+                )
+            }
+        }.store(in: &cancellable)
+    }
+    
+    override func initData() {
+        vm.output.res.send(.CHANGE_TASK_START(.init(date: Date())))
+        vm.output.res.send(.CHANGE_TASK_END(.init(date: Date())))
     }
     
     override func bindConstraint(_ isAdjustWindow: Bool) {
-        lblTaskDate.snp.makeConstraints {
+        lblTaskStart.snp.makeConstraints {
+            $0.left.equalTo(vStartGroup.snp.left).offset(4)
             $0.top.equalToSuperview().offset(32)
-            $0.left.equalToSuperview().offset(26)
-            $0.right.equalTo(lblTaskStartEnd.snp.left).offset(-7)
+            $0.bottom.equalTo(vStartGroup.snp.top).offset(-4)
             $0.height.equalTo(18)
-            $0.width.equalTo(lblTaskStartEnd.snp.width)
         }
         
-        btnTaskDate.snp.makeConstraints {
-            $0.top.equalTo(lblTaskDate.snp.bottom).offset(4)
+        vStartGroup.snp.makeConstraints {
             $0.left.equalToSuperview().offset(22)
-            $0.right.equalTo(btnTaskStartEnd.snp.left).offset(-7)
-            $0.bottom.equalToSuperview()
-            $0.height.equalTo(42)
-            $0.width.equalTo(btnTaskStartEnd.snp.width)
+            $0.bottom.equalToSuperview().offset(-16)
+            $0.right.equalTo(lblConnect.snp.left).offset(-9)
+            $0.height.equalTo(83)
+            $0.width.equalTo(vEndGroup.snp.width)
         }
         
-        lblTaskDateValue.snp.makeConstraints {
-            $0.left.equalToSuperview().offset(10)
-            $0.right.equalTo(ivTaskDate.snp.left).offset(-10)
-            $0.centerY.equalToSuperview()
-            $0.height.equalTo(20)
-        }
-        
-        ivTaskDate.snp.makeConstraints {
-            $0.right.equalToSuperview().offset(-10)
-            $0.centerY.equalToSuperview()
+        ivStartDateIcon.snp.makeConstraints {
             $0.size.equalTo(26)
+            $0.top.equalToSuperview().offset(10)
+            $0.right.equalToSuperview().offset(-10)
         }
         
-        lblTaskStartEnd.snp.makeConstraints {
+        ivStartTimeIcon.snp.makeConstraints {
+            $0.size.equalTo(26)
+            $0.top.equalTo(ivStartDateIcon.snp.bottom).offset(11)
+            $0.right.equalToSuperview().offset(-10)
+            $0.bottom.equalToSuperview().offset(-10)
+        }
+        
+        lblStartDate.snp.makeConstraints {
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(ivStartDateIcon.snp.top)
+            $0.bottom.equalTo(ivStartDateIcon.snp.bottom)
+        }
+        
+        lblStartTime.snp.makeConstraints {
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(ivStartTimeIcon.snp.top)
+            $0.bottom.equalTo(ivStartTimeIcon.snp.bottom)
+        }
+        
+        btnStart.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        lblConnect.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalToSuperview().offset(-16)
+            $0.width.equalTo(8)
+            $0.height.equalTo(83)
+        }
+        
+        lblTaskEnd.snp.makeConstraints {
+            $0.left.equalTo(vEndGroup.snp.left).offset(4)
             $0.top.equalToSuperview().offset(32)
-            $0.left.equalTo(lblTaskDate.snp.right).offset(7)
-            $0.right.equalToSuperview().offset(-26)
+            $0.bottom.equalTo(vEndGroup.snp.top).offset(-4)
             $0.height.equalTo(18)
-            $0.width.equalTo(lblTaskDate.snp.width)
         }
         
-        btnTaskStartEnd.snp.makeConstraints {
-            $0.top.equalTo(lblTaskStartEnd.snp.bottom).offset(4)
-            $0.left.equalTo(btnTaskDate.snp.right).offset(7)
+        vEndGroup.snp.makeConstraints {
             $0.right.equalToSuperview().offset(-22)
-            $0.bottom.equalToSuperview()
-            $0.height.equalTo(42)
-            $0.width.equalTo(btnTaskStartEnd.snp.width)
+            $0.bottom.equalToSuperview().offset(-16)
+            $0.left.equalTo(lblConnect.snp.right).offset(9)
+            $0.height.equalTo(83)
+            $0.width.equalTo(vStartGroup.snp.width)
         }
         
-        lblTaskStartEndValue.snp.makeConstraints {
-            $0.left.equalToSuperview().offset(10)
-            $0.right.equalTo(ivTaskStartEnd.snp.left).offset(-10)
-            $0.centerY.equalToSuperview()
-            $0.height.equalTo(20)
-        }
-        
-        ivTaskStartEnd.snp.makeConstraints {
-            $0.right.equalToSuperview().offset(-10)
-            $0.centerY.equalToSuperview()
+        ivEndDateIcon.snp.makeConstraints {
             $0.size.equalTo(26)
+            $0.top.equalToSuperview().offset(10)
+            $0.right.equalToSuperview().offset(-10)
+        }
+        
+        ivEndTimeIcon.snp.makeConstraints {
+            $0.size.equalTo(26)
+            $0.top.equalTo(ivEndDateIcon.snp.bottom).offset(11)
+            $0.right.equalToSuperview().offset(-10)
+            $0.bottom.equalToSuperview().offset(-10)
+        }
+        
+        lblEndDate.snp.makeConstraints {
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(ivEndDateIcon.snp.top)
+            $0.bottom.equalTo(ivEndDateIcon.snp.bottom)
+        }
+        
+        lblEndTime.snp.makeConstraints {
+            $0.left.equalToSuperview().offset(10)
+            $0.top.equalTo(ivEndTimeIcon.snp.top)
+            $0.bottom.equalTo(ivEndTimeIcon.snp.bottom)
+        }
+        
+        btnEnd.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 }
 
 extension TaskView {
+    func changeDateTime(targetDate: UILabel, targetTime: UILabel, model: DailyModel) {
+        targetDate.text = String(format: "%04d-%02d-%02d", model.year, model.month, model.day)
+        targetTime.text = String(format: "%02d-%02d", model.hour, model.minute)
+    }
+    
+    func selectedButton(target: UIView) {
+        target.backgroundColor = BBColor.deepSkyBlue.color().withAlphaComponent(0.1)
+        target.layer.borderColor = BBColor.deepSkyBlue.color().blendMultiply(
+            coverColor: BBColor.deepSkyBlue.color()
+        ).cgColor
+    }
+    
+    func unSelectedButton(target: UIView) {
+        target.backgroundColor = BBColor.white.color()
+        target.layer.borderColor = BBColor.paleGrey239.color().cgColor
+    }
+}
+
+extension TaskView {
     @objc func eventTaskStart(_ sender: UIButton) {
-        
+        debugPrint(#file, #function, #line)
+        selectedButton(target: vStartGroup)
+        unSelectedButton(target: vEndGroup)
+        vm.input.req.send(.CHANGE_TASK_START(
+            sender.convert(sender.frame, to: self)
+        ))
     }
     
     @objc func eventTaskEnd(_ sender: UIButton) {
-        
+        debugPrint(#file, #function, #line)
+        selectedButton(target: vEndGroup)
+        unSelectedButton(target: vStartGroup)
+        vm.input.req.send(.CHANGE_TASK_END(
+            sender.convert(sender.frame, to: self)
+        ))
     }
 }
 

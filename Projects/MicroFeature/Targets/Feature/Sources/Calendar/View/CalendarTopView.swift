@@ -13,7 +13,7 @@ import AssetFramework
 class CalendarTopView: BaseView {
     public static func create(vm: CalendarTopViewModel) -> BaseView {
         return CalendarTopView(isBindCall: false).apply {
-            $0.backgroundColor = BBColor.paleGrey.color()
+            $0.backgroundColor = BBColor.paleGrey245.color()
             $0.vm = vm
             $0.initializeCall()
         }
@@ -44,7 +44,7 @@ class CalendarTopView: BaseView {
     private lazy var ivDropDownArrow = {
         UIImageView().apply {
             $0.image = UIImage(systemName: "chevron.down.circle.fill")
-            $0.tintColor = BBColor.paleGrey.color()
+            $0.tintColor = BBColor.paleGrey245.color()
         }
     }()
     

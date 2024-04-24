@@ -59,7 +59,7 @@ class HomeViewController: BaseViewController {
     }
     
     override func bindCombine() {
-        vmTop.output.clickEvent.sink {
+        vmTop.output.observeResponse.sink {
             switch $0 {
             case .ADD_SCHEDULE:
                 debugPrint(#file, #function, #line)
@@ -71,24 +71,20 @@ class HomeViewController: BaseViewController {
             }
         }.store(in: &cancellable)
         
-        vmSelectedDate.output.clickEvent.sink {
-            switch $0 {
-            case .NONE:
-                debugPrint(#file, #function, #line)
-            case .LOAD_SCHEDULE:
-                debugPrint(#file, #function, #line)
-            case .SHOW_CALENDAR:
-                debugPrint(#file, #function, #line)
-                self.present(CalendarViewController.create(), animated: true)
-            }
-        }.store(in: &cancellable)
+//        vmSelectedDate.output.observeResponse.sink {
+//            switch $0 {
+//            case .NONE:
+//                debugPrint(#file, #function, #line)
+//            case .LOAD_SCHEDULE:
+//                debugPrint(#file, #function, #line)
+//            case .SHOW_CALENDAR:
+//                debugPrint(#file, #function, #line)
+//                self.present(CalendarViewController.create(), animated: true)
+//            }
+//        }.store(in: &cancellable)
     }
     
     override func bindConstraint() {
-        view.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
         vTop.snp.makeConstraints {
             $0.top.equalTo(self.safeArea().top)
             $0.left.right.equalToSuperview()
@@ -104,6 +100,12 @@ class HomeViewController: BaseViewController {
             $0.top.equalTo(vSelectedDate.snp.bottom)
             $0.left.right.bottom.equalToSuperview()
         }
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        vmSelectedDate.input.observeRequest.send(.SELECTED_DATE(Date.now))
     }
 }
 

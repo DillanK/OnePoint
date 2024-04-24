@@ -31,10 +31,13 @@ public enum BBColor: String, CaseIterable {
 	case black17 = "black17" // {accessModifier}} static let black17 = AssetFrameworkColors(name: "black17")
 	case black51 = "black51" // {accessModifier}} static let black51 = AssetFrameworkColors(name: "black51")
 	case brownGrey = "brownGrey" // {accessModifier}} static let brownGrey = AssetFrameworkColors(name: "brownGrey")
+	case brownGrey102 = "brownGrey102" // {accessModifier}} static let brownGrey102 = AssetFrameworkColors(name: "brownGrey102")
 	case buttonBlack = "buttonBlack" // {accessModifier}} static let buttonBlack = AssetFrameworkColors(name: "buttonBlack")
 	case clearBlue = "clearBlue" // {accessModifier}} static let clearBlue = AssetFrameworkColors(name: "clearBlue")
 	case homeBackground = "homeBackground" // {accessModifier}} static let homeBackground = AssetFrameworkColors(name: "homeBackground")
-	case paleGrey = "paleGrey" // {accessModifier}} static let paleGrey = AssetFrameworkColors(name: "paleGrey")
+	case paleGrey235 = "paleGrey235" // {accessModifier}} static let paleGrey235 = AssetFrameworkColors(name: "paleGrey235")
+	case paleGrey239 = "paleGrey239" // {accessModifier}} static let paleGrey239 = AssetFrameworkColors(name: "paleGrey239")
+	case paleGrey245 = "paleGrey245" // {accessModifier}} static let paleGrey245 = AssetFrameworkColors(name: "paleGrey245")
 	case random = "random" // {accessModifier}} static let random = AssetFrameworkColors(name: "random")
 	case scheduleJob = "scheduleJob" // {accessModifier}} static let scheduleJob = AssetFrameworkColors(name: "scheduleJob")
 	case scheduleJobDisable = "scheduleJobDisable" // {accessModifier}} static let scheduleJobDisable = AssetFrameworkColors(name: "scheduleJobDisable")
@@ -93,6 +96,9 @@ public enum BBImage: String {
 	case iconInputDeelete = "iconInputDeelete" //public static let iconInputDeelete = AssetFrameworkImages(name: "iconInputDeelete")
 	case iconInputDelete = "iconInputDelete" //public static let iconInputDelete = AssetFrameworkImages(name: "iconInputDelete")
 	case iconInputEdit = "iconInputEdit" //public static let iconInputEdit = AssetFrameworkImages(name: "iconInputEdit")
+	case imgFormOpen = "imgFormOpen" //public static let imgFormOpen = AssetFrameworkImages(name: "imgFormOpen")
+	case imgTimeShadow = "imgTimeShadow" //public static let imgTimeShadow = AssetFrameworkImages(name: "imgTimeShadow")
+	case mobileIconMainCaster = "mobileIconMainCaster" //public static let mobileIconMainCaster = AssetFrameworkImages(name: "mobileIconMainCaster")
 	
 	public func image() -> UIImage {
 		AssetFrameworkImages(name: self.rawValue).image

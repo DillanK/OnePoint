@@ -88,7 +88,7 @@ extension ShareView {
             $0.setTitleColor(BBColor.black17.color(), for: .normal)
             $0.titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
             $0.layer.cornerRadius = 36 / 2
-            $0.backgroundColor = BBColor.paleGrey.color()
+            $0.backgroundColor = BBColor.paleGrey245.color()
             $0.tintColor = BBColor.black17.color()
         }
     }

@@ -188,10 +188,10 @@ class ScheduleListViewCell: BaseTableViewCell<ScheduleModel> {
         guard let model = model else {
             return
         }
-        vSymboleBackground.backgroundColor = model.symboleColor
+//        vSymboleBackground.backgroundColor = model.symboleColor
 //        layerTimeProgress.backgroundColor = model.symboleColor.blendMode(bounds: layerTimeProgress.bounds, mode: .multiply)
         
-        layerTimeProgress.backgroundColor = model.symboleColor.blendMultiply(coverColor: model.symboleColor, alpha: 0.6).cgColor
+//        layerTimeProgress.backgroundColor = model.symboleColor.blendMultiply(coverColor: model.symboleColor, alpha: 0.6).cgColor
 //        contentView.backgroundColor = model.symboleColor.color()
 //        vSymboleBackground.backgroundColor = model.symboleColor.color()
 //        ivSymbole.image = UIImage(systemName: model.symboleName)

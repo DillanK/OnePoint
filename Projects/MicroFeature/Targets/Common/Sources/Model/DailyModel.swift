@@ -22,12 +22,16 @@ public struct DailyModel: BaseModel {
     public let month: Int
     public let day: Int
     public let weekend: Int
+    public let hour: Int
+    public let minute: Int
     
-    public init(year: Int, month: Int, day: Int, weekend: Int) {
+    public init(year: Int, month: Int, day: Int, weekend: Int, hour: Int, minute: Int) {
         self.year = year
         self.month = month
         self.day = day
         self.weekend = weekend
+        self.hour = hour
+        self.minute = minute
     }
     
     public init(date: Date) {
@@ -36,6 +40,8 @@ public struct DailyModel: BaseModel {
         self.month = calendar.component(.month, from: date)
         self.day = calendar.component(.day, from: date)
         self.weekend = calendar.component(.weekday, from: date)
+        self.hour = calendar.component(.hour, from: date)
+        self.minute = calendar.component(.minute, from: date)
     }
     
     public func convertDate() -> Date? {

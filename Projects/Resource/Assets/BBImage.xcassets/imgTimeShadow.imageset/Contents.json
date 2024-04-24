@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "imgTimeShadow.png",
+      "scale" : "1x",
+      "idiom" : "universal"
+    },
+    {
+      "scale" : "2x",
+      "filename" : "imgTimeShadow@2x.png",
+      "idiom" : "universal"
+    },
+    {
+      "filename" : "imgTimeShadow@3x.png",
+      "scale" : "3x",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "version" : 1,
+    "author" : "xcode"
+  }
+}

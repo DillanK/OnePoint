@@ -16,7 +16,7 @@ class TitleView: BaseView {
         return TitleView(isBindCall: false).apply {
             $0.vm = vm
             $0.initializeCall()
-            $0.backgroundColor = BBColor.paleGrey.color()
+            $0.backgroundColor = BBColor.paleGrey245.color()
         }
     }
     
@@ -24,7 +24,7 @@ class TitleView: BaseView {
     
     lazy var vSafeArea = {
         UIView().apply {
-            $0.backgroundColor = BBColor.paleGrey.color()
+            $0.backgroundColor = BBColor.paleGrey245.color()
         }
     }()
     
@@ -77,7 +77,7 @@ class TitleView: BaseView {
 //        }
         
         btnClose.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12)//equalTo(vSafeArea.snp.bottom).offset(12)
+            $0.top.equalToSuperview().offset(12 + safeArea().top)//equalTo(vSafeArea.snp.bottom).offset(12)
             $0.right.equalToSuperview().offset(-12)
             $0.size.equalTo(46)
         }

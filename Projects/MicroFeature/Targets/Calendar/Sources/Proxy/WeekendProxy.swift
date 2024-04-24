@@ -10,4 +10,5 @@ import UIKit
 
 public protocol WeekendProxy {
     func view() -> UIView
+    func weekendHeight() -> CGFloat
 }

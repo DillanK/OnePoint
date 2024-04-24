@@ -70,7 +70,7 @@ class MonthViewCell: BaseCollectionViewCell<CalendarModelProtocol> {
         } else {
             lblDay.backgroundColor = BBColor.clear.color()
             lblDay.font = BBFont.NotoSansKR.regular.font(size: 14)
-            if let validData = data, validData.isWeekend() {
+            if let validData = data, validData.isHoliday() {
                 lblDay.textColor = BBColor.grapefruit.color()
             } else {
                 lblDay.textColor = BBColor.black17.color()

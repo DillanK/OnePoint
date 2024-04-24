@@ -58,6 +58,8 @@ open class BaseView: UIView {
         initCancellable?.cancel()
         initCancellable = viewModel.input.request.sink { type in
             switch type {
+            case .initData:
+                self.initData()
             case .bindView:
                 self.bindView()
             case .bindEvent:
@@ -75,14 +77,16 @@ open class BaseView: UIView {
                 self.isAdjustWindow = false
             }
         }
-        
+
         viewModel.input.request.send(.bindView)
         viewModel.input.request.send(.bindEvent)
         viewModel.input.request.send(.bindCombine)
-
+        viewModel.input.request.send(.initData)
+        
         setNeedsUpdateConstraints()
     }
 
+    open func initData() { }
     /// Init Call Step1(View addSubview 등 처리)
     open func bindView() { }
     

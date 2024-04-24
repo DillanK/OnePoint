@@ -9,45 +9,46 @@
 /* ==================================================== */
 /* ==================================================== */
 /* 요일 */
-"SUNDAY" = "SUNDAY";
-"MONDAY" = "MONDAY";
-"TUESDAY" = "TUESDAY";
-"WEDNESDAY" = "WEDNESDAY";
-"THURSDAY" = "THURSDAY";
-"FRIDAY" = "FRIDAY";
-"SATURDAY" = "SATURDAY";
+"SUNDAY" = "일요일";
+"MONDAY" = "월요일";
+"TUESDAY" = "화요일";
+"WEDNESDAY" = "수요일";
+"THURSDAY" = "목요일";
+"FRIDAY" = "금요일";
+"SATURDAY" = "토요일";
 
 /* 요일(약어) */
-"SUN" = "SUN";
-"MON" = "MON";
-"TUE" = "TUE";
-"WED" = "WED";
-"THU" = "THU";
-"FRI" = "FRI";
-"SAT" = "SAT";
+"SUN" = "일";
+"MON" = "월";
+"TUE" = "화";
+"WED" = "수";
+"THU" = "목";
+"FRI" = "금";
+"SAT" = "토";
 
 /* ==================================================== */
 /* ==================================================== */
 /* 일정 입력 */
-"Please enter your schedule." = "Please enter your schedule.";
-"date" = "date";
-"Start/End Time" = "Start/End Time";
-"Reminder" = "Reminder";
-"No Reminder" = "no";
-"A month ago" = "month";
-"A week ago" = "week";
-"A day ago" = "day";
-"Direct time setting" = "setting";
-"Repeatedly" = "Repeatedly";
-"No Repeatedly" = "No Repeatedly";
-"Once" = "Once";
-"every month" = "month";
-"every day" = "day";
-"every week" = "week";
-"every year" = "year";
-"Color" = "Color";
-"Detail" = "Detail";
-"Please enter your details." = "Please enter your details.";
-"Share" = "Share";
-"Add Schedule" = "Add Schedule";
-"Move to temporary box" = "Move to temporary box";
+"Please enter your schedule." = "일정을 입력해주세요.";
+"date" = "날짜";
+"Start/End Time" = "시작/종료시간";
+"Reminder" = "알림";
+"No Reminder" = "없음";
+"A month ago" = "한달전";
+"A week ago" = "일주일전";
+"A day ago" = "하루전";
+"Direct time setting" = "직접시간설정";
+"Repeatedly" = "반복";
+"No Repeatedly" = "없음";
+"Once" = "한번";
+"every month" = "매월";
+"every day" = "매일";
+"every week" = "매주";
+"every year" = "매년";
+"Color" = "색상";
+"Detail" = "세부사항";
+"Please enter your details." = "세부사항을 입력해주세요.";
+"share" = "공유";
+"Add Schedule" = "일정추가";
+"Move to temporary box" = "임시박스로 이동";
+

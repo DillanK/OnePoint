@@ -48,7 +48,7 @@ class SelectedDateView: BaseView {
     private lazy var lblWeekday = {
         UILabel().apply {
             $0.text = "수"
-            $0.font = BBFont.NotoSansKR.medium.font(size: 18)
+            $0.font = BBFont.NotoSansKR.medium.font(size: 16)
             $0.textColor = BBColor.selectedScheduleWeekday.color()
         }
     }()
@@ -112,10 +112,31 @@ class SelectedDateView: BaseView {
         btnSelectedDate.addTarget(
             self, action: #selector(eventSelectedDate(_:)), for: .touchUpInside
         )
+        btnPrevDay.addTarget(
+            self, action: #selector(eventPrevDay(_:)), for: .touchUpInside
+        )
+        btnNextDay.addTarget(
+            self, action: #selector(eventNextDay(_:)), for: .touchUpInside
+        )
     }
     
     /// Init Call Step3(Combine, Delegate 제약사항 추가)
-    override func bindCombine() { }
+    override func bindCombine() { 
+        vm.output.observeResponse.sink { type in
+            switch type {
+            case .SELECTED_DATE(let isToday, let date, let week):
+                self.lblTodayBadge.isHidden = isToday.not()
+                self.btnSelectedDate.setTitle(date, for: .normal)
+                self.lblWeekday.text = week
+            case .NONE:
+                debugPrint(#file, #function, #line)
+            case .LOAD_SCHEDULE(_, _):
+                debugPrint(#file, #function, #line)
+            case .SHOW_CALENDAR:
+                debugPrint(#file, #function, #line)
+            }
+        }.store(in: &cancellable)
+    }
     
     /// Init Call Step4(View의 위치 및 제약사항 추가)
     override func bindConstraint(_ isAdjustWindow: Bool) {
@@ -141,7 +162,7 @@ class SelectedDateView: BaseView {
             $0.centerY.equalToSuperview()
             $0.left.equalTo(btnSelectedDate.snp.right).offset(8)
             $0.right.equalToSuperview()
-            $0.width.equalTo(18)
+//            $0.width.equalTo(20)
             $0.height.equalTo(44)
         }
         
@@ -183,7 +204,15 @@ class SelectedDateView: BaseView {
 }
 
 extension SelectedDateView {
+    @objc func eventPrevDay(_ sender: UIButton) {
+        vm.input.observeRequest.send(.PREV_DATE)
+    }
+    
+    @objc func eventNextDay(_ sender: UIButton) {
+        vm.input.observeRequest.send(.NEXT_DATE)
+    }
+    
     @objc func eventSelectedDate(_ sender: UIButton) {
-        vm.output.clickEvent.send(.SHOW_CALENDAR)
+        vm.output.observeResponse.send(.SHOW_CALENDAR)
     }
 }
