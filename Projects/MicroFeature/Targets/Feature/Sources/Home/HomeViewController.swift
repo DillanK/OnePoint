@@ -63,7 +63,7 @@ class HomeViewController: BaseViewController {
             switch $0 {
             case .ADD_SCHEDULE:
                 debugPrint(#file, #function, #line)
-                self.showAddSchedule()
+                self.showAddSchedule(self.vmSelectedDate.selectedDate)
             case .SETTING:
                 debugPrint(#file, #function, #line)
             case .SEARCH:
@@ -110,7 +110,7 @@ class HomeViewController: BaseViewController {
 }
 
 extension HomeViewController {
-    func showAddSchedule() {
-        present(ScheduleAddViewContoller.create(), animated: true)
+    func showAddSchedule(_ selectedDate: Date) {
+        present(ScheduleAddViewContoller.create(selectedDate), animated: true)
     }
 }

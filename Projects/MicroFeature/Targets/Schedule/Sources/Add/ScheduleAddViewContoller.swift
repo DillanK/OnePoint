@@ -13,10 +13,12 @@ import Combine
 import CommonFramework
 
 public class ScheduleAddViewContoller: BaseViewController {
-    public static func create() -> BaseViewController {
+    public static func create(_ currentDate: Date) -> BaseViewController {
         return ScheduleAddViewContoller().apply {
             $0.modalPresentationStyle = .fullScreen
             $0.view.backgroundColor = BBColor.white.color()
+            $0.vmTask.output.res.send(.CHANGE_TASK_START(.init(date: currentDate)))
+            $0.vmTask.output.res.send(.CHANGE_TASK_END(.init(date: currentDate)))
         }
     }
     
@@ -85,8 +87,11 @@ public class ScheduleAddViewContoller: BaseViewController {
     private lazy var vScrollGroup = {
         UIScrollView().apply {
             $0.contentInset = .init(top: 0, left: 0, bottom: 46, right: 0)
+            $0.bounces = false
         }
     }()
+    
+    
     
     public override func bindView() {
         view.addSubview(vTitle)
@@ -104,10 +109,7 @@ public class ScheduleAddViewContoller: BaseViewController {
     }
     
     public override func bindEvent() {
-//        view.addGestureRecognizer(
-//            UITapGestureRecognizer(target: self,
-//                                   action: #selector(tapGesture))
-//        )
+        vScrollGroup.delegate = self
     }
     
     public override func bindCombine() {
@@ -228,5 +230,11 @@ extension ScheduleAddViewContoller {
     
     @objc func tapGesture() {
         self.view.endEditing(true)
+    }
+}
+
+extension ScheduleAddViewContoller: UIScrollViewDelegate {
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        vmTitle.output.res.send(.SCROLLING(scrollView.contentOffset.y))
     }
 }

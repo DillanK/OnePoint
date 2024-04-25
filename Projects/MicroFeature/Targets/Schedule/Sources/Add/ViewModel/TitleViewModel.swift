@@ -37,6 +37,7 @@ extension TitleViewModel: BaseViewModelProtocol {
     
     enum Response {
         case SELECTED_COLOR(UIColor)
+        case SCROLLING(CGFloat)
     }
     
     struct Input {

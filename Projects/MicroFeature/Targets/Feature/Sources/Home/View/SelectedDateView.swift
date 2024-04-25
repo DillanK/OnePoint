@@ -38,9 +38,11 @@ class SelectedDateView: BaseView {
     }()
     
     private lazy var btnSelectedDate = {
-        UIButton(type: .system).apply {
+        UIButton().apply {
             $0.setTitle("2023.11.22", for: .normal)
             $0.setTitleColor(BBColor.selectedDate.color(), for: .normal)
+            $0.setTitleColor(BBColor.selectedScheduleWeekday.color(), for: .highlighted)
+            $0.tintColor = BBColor.selectedDate.color()
             $0.titleLabel?.font = BBFont.NotoSansKR.bold.font(size: 42)
         }
     }()
@@ -125,9 +127,12 @@ class SelectedDateView: BaseView {
         vm.output.observeResponse.sink { type in
             switch type {
             case .SELECTED_DATE(let isToday, let date, let week):
-                self.lblTodayBadge.isHidden = isToday.not()
-                self.btnSelectedDate.setTitle(date, for: .normal)
-                self.lblWeekday.text = week
+                UIView.animate(withDuration: 0.3) {
+                    self.lblTodayBadge.isHidden = isToday.not()
+                    self.btnSelectedDate.setTitle(date, for: .normal)
+                    self.lblWeekday.text = week
+                    
+                }
             case .NONE:
                 debugPrint(#file, #function, #line)
             case .LOAD_SCHEDULE(_, _):
@@ -150,7 +155,7 @@ class SelectedDateView: BaseView {
         vDateGroup.snp.makeConstraints {
             $0.top.equalTo(lblTodayBadge.snp.bottom).offset(14)
             $0.centerX.equalToSuperview()
-            $0.height.equalTo(44)
+            $0.height.equalTo(52)
         }
         
         btnSelectedDate.snp.makeConstraints {
@@ -159,22 +164,21 @@ class SelectedDateView: BaseView {
         }
         
         lblWeekday.snp.makeConstraints {
-            $0.centerY.equalToSuperview()
+            $0.top.equalTo(btnSelectedDate.snp.top)
+            $0.bottom.equalTo(btnSelectedDate.snp.bottom)
             $0.left.equalTo(btnSelectedDate.snp.right).offset(8)
             $0.right.equalToSuperview()
-//            $0.width.equalTo(20)
-            $0.height.equalTo(44)
         }
         
         btnPrevDay.snp.makeConstraints {
-            $0.top.equalTo(vDateGroup.snp.top)
-            $0.bottom.equalTo(vDateGroup.snp.bottom)
+            $0.top.equalTo(btnSelectedDate.snp.top).offset(8)
+            $0.bottom.equalTo(btnSelectedDate.snp.bottom)
             $0.right.equalTo(vDateGroup.snp.left).offset(-24)
         }
         
         btnNextDay.snp.makeConstraints {
-            $0.top.equalTo(vDateGroup.snp.top)
-            $0.bottom.equalTo(vDateGroup.snp.bottom)
+            $0.top.equalTo(btnSelectedDate.snp.top).offset(8)
+            $0.bottom.equalTo(btnSelectedDate.snp.bottom)
             $0.left.equalTo(vDateGroup.snp.right).offset(24)
         }
         

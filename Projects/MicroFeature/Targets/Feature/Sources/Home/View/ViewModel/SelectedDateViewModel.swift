@@ -14,7 +14,7 @@ public class SelectedDateViewModel: BaseViewModel {
     public var input = Input()
     public var output = Output()
     
-    private var selectedDate: Date = Date.now
+    var selectedDate: Date = Date.now
     
     public override func bindInputCombine() {
         input.observeRequest

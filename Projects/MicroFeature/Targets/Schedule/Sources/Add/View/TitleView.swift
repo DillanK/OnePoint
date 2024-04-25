@@ -50,10 +50,12 @@ class TitleView: BaseView {
         }
     }()
     
+    private let DEF_TOP_MARGIN: CGFloat = 116
+    private var MOVE_TOP_MARGIN: CGFloat = 116
+    
     override func bindView() {
-//        addSubview(vSafeArea)
-        addSubview(btnClose)
         addSubview(tfTitle)
+        addSubview(btnClose)
         addSubview(vLine)
     }
     
@@ -66,26 +68,37 @@ class TitleView: BaseView {
             switch $0 {
             case .SELECTED_COLOR(let color):
                 self.backgroundColor = color
+            case .SCROLLING(let y):
+                debugPrint("Y : \(y)")
+                self.tfTitle.snp.remakeConstraints {
+                    if y <= 0 {
+                        $0.top.equalToSuperview().offset(
+                            min(self.DEF_TOP_MARGIN - y, self.DEF_TOP_MARGIN)
+                        )
+                    } else {
+                        $0.top.equalToSuperview().offset(
+                            max(self.DEF_TOP_MARGIN - y, 12 + self.safeArea().top)
+                        )
+                    }
+                    $0.left.equalToSuperview().offset(26)
+                    $0.right.equalTo(self.btnClose.snp.left).offset(-26)
+                }
+                self.layoutIfNeeded()
             }
         }.store(in: &cancellable)
     }
     
     override func bindConstraint(_ isAdjustWindow: Bool) {
-//        vSafeArea.snp.makeConstraints {
-//            $0.top.left.right.equalToSuperview()
-//            $0.height.equalTo(safeArea().top)
-//        }
-        
         btnClose.snp.makeConstraints {
-            $0.top.equalToSuperview().offset(12 + safeArea().top)//equalTo(vSafeArea.snp.bottom).offset(12)
+            $0.top.equalToSuperview().offset(12 + safeArea().top)
             $0.right.equalToSuperview().offset(-12)
             $0.size.equalTo(46)
         }
         
         tfTitle.snp.makeConstraints {
-            $0.top.equalTo(btnClose.snp.bottom).offset(16)
+            $0.top.equalToSuperview().offset(DEF_TOP_MARGIN)
             $0.left.equalToSuperview().offset(26)
-            $0.right.equalToSuperview().offset(26)
+            $0.right.equalTo(btnClose.snp.left).offset(-26)
         }
         
         vLine.snp.makeConstraints {
