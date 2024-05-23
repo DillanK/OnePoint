@@ -73,6 +73,8 @@ class MonthlyView: BaseView, MonthlyProxy {
                 debugPrint(#file, #function, #line, type)
                 let index = self.todayIndex()
                 self.reloadData(index: index.0, monthCount: index.1)
+            case .LOAD_WEEKENDLY_DATA:
+                debugPrint(#file, #function, #line, type)
             case .ADD_DAYILY_DATA:
                 debugPrint(#file, #function, #line, type)
             }

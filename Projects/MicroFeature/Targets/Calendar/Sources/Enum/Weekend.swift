@@ -8,7 +8,7 @@
 
 import LocalizeStringFramework
 
-enum Weekend: Int {
+public enum Weekend: Int {
     case SUN = 1
     case MON = 2
     case TUE = 3

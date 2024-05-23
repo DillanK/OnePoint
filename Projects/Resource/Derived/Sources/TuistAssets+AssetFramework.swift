@@ -46,6 +46,7 @@ public enum BBColor: String, CaseIterable {
 	case scheduleTitle = "scheduleTitle" // {accessModifier}} static let scheduleTitle = AssetFrameworkColors(name: "scheduleTitle")
 	case scheduleTitleDisable = "scheduleTitleDisable" // {accessModifier}} static let scheduleTitleDisable = AssetFrameworkColors(name: "scheduleTitleDisable")
 	case selectedDate = "selectedDate" // {accessModifier}} static let selectedDate = AssetFrameworkColors(name: "selectedDate")
+	case selectedDateHighlight = "selectedDateHighlight" // {accessModifier}} static let selectedDateHighlight = AssetFrameworkColors(name: "selectedDateHighlight")
 	case selectedScheduleCount = "selectedScheduleCount" // {accessModifier}} static let selectedScheduleCount = AssetFrameworkColors(name: "selectedScheduleCount")
 	case selectedScheduleLine = "selectedScheduleLine" // {accessModifier}} static let selectedScheduleLine = AssetFrameworkColors(name: "selectedScheduleLine")
 	case selectedSchedulePrevNext = "selectedSchedulePrevNext" // {accessModifier}} static let selectedSchedulePrevNext = AssetFrameworkColors(name: "selectedSchedulePrevNext")

@@ -65,10 +65,21 @@ extension LocalCalendarManger {
     /// 월간 데이터를 생성한다.
     func loadMonthly() {
         guard monthlyData.isEmpty.not() else {
-            viewModel.input.calendar.send(.makeMonthlyData(isGabageData: true))
+            viewModel.input.calendar.send(.makeMonthlyData())
             return
         }
         
         response.send(.LOAD_MONTHLY_DATA)
+    }
+    
+    func loadWeekendly() {
+        guard monthlyData.isEmpty.not() else {
+            viewModel.input.calendar.send(.makeMonthlyData(
+                isGabageData: true, isEmptyData: false, isMonth: false
+            ))
+            return
+        }
+        
+        response.send(.LOAD_WEEKENDLY_DATA)
     }
 }

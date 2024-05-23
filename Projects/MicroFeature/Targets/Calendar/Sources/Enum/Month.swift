@@ -36,6 +36,7 @@ public enum Month: Int {
         case .Apr, .Jun, .Sep, .Nov:
             return 30
         case .Feb:
+            debugPrint("isLeapYear \(year)년 2월 \(isLeapYear(year) ? 29 : 28)")
             return isLeapYear(year) ? 29 : 28
         }
     }

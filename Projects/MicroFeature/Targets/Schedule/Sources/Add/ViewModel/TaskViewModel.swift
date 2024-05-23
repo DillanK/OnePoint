@@ -29,15 +29,19 @@ class TaskViewModel: BaseViewModel {
     override func bindInputCombine() {
         input.req.sink {
             switch $0 {
-            case .CHANGE_TASK_START(let btnRect):
+            case .CHANGE_TASK_START(let btnRect, let DailyModel):
                 debugPrint(#file, #function, #line)
-                self.output.resSelected.send(.SELECTED_TASK_START(self.startDailyModel))
-                self.output.resTaskDateTime.send(.SELECTED_RECT(btnRect))
-            case .CHANGE_TASK_END(let btnRect):
+                self.output.resSelected.send(.SHOW_TASK_DATETIME_START)
+                self.output.resShowSelectedDateTime.send(.SHOW_WEEKEND_TASK_START(btnRect, self.startDailyModel))
+            case .CHANGE_TASK_END(let btnRect, let DailyModel):
                 debugPrint(#file, #function, #line)
-                self.output.resSelected.send(.SELECTED_TASK_END(self.endDailyModel))
-                self.output.resTaskDateTime.send(.SELECTED_RECT(btnRect))
+                self.output.resSelected.send(.SHOW_TASK_DATETIME_END)
+                self.output.resShowSelectedDateTime.send(.SHOW_WEEKEND_TASK_END(btnRect, self.endDailyModel))
             case .UNSELECTD:
+                debugPrint(#file, #function, #line)
+            case .SELECTED_DATETIME_START(_):
+                debugPrint(#file, #function, #line)
+            case .SELECTED_DATETIME_END(_):
                 debugPrint(#file, #function, #line)
             }
         }.store(in: &cancellable)
@@ -47,9 +51,13 @@ class TaskViewModel: BaseViewModel {
 extension TaskViewModel: BaseViewModelProtocol {
     enum Request {
         /// 시작일
-        case CHANGE_TASK_START(CGRect)
+        case CHANGE_TASK_START(CGRect, DailyModel)
         /// 시작일
-        case CHANGE_TASK_END(CGRect)
+        case CHANGE_TASK_END(CGRect, DailyModel)
+        /// 시작일 선택 값
+        case SELECTED_DATETIME_START(DailyModel)
+        /// 종료일 선택 값
+        case SELECTED_DATETIME_END(DailyModel)
         /// 선택을 해제한다.
         case UNSELECTD
     }
@@ -63,15 +71,16 @@ extension TaskViewModel: BaseViewModelProtocol {
     }
     
     /// 버튼이 선택되면 이벤트를 전달해준다.
-    enum ResponseSelected {
+    enum ResponseShowDateTime {
         /// 시작일
-        case SELECTED_TASK_START(DailyModel)
+        case SHOW_TASK_DATETIME_START
         /// 종료일
-        case SELECTED_TASK_END(DailyModel)
+        case SHOW_TASK_DATETIME_END
     }
     
-    enum ResponseTaskDateTime {
-        case SELECTED_RECT(CGRect)
+    enum ResponseSelectedDateTime {
+        case SHOW_WEEKEND_TASK_START(CGRect, DailyModel)
+        case SHOW_WEEKEND_TASK_END(CGRect, DailyModel)
     }
 
     struct Input {
@@ -80,7 +89,7 @@ extension TaskViewModel: BaseViewModelProtocol {
     
     struct Output {
         let res = PassthroughSubject<Response, Never>()
-        let resSelected = PassthroughSubject<ResponseSelected, Never>()
-        let resTaskDateTime = PassthroughSubject<ResponseTaskDateTime, Never>()
+        let resSelected = PassthroughSubject<ResponseShowDateTime, Never>()
+        let resShowSelectedDateTime = PassthroughSubject<ResponseSelectedDateTime, Never>()
     }
 }

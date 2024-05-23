@@ -10,6 +10,7 @@ import Foundation
 
 enum LocalCalendar {
     case LOAD_MONTHLY_DATA
+    case LOAD_WEEKENDLY_DATA
     case ADD_DAYILY_DATA
 }
 

@@ -86,7 +86,7 @@ public class ScheduleAddViewContoller: BaseViewController {
     
     private lazy var vScrollGroup = {
         UIScrollView().apply {
-            $0.contentInset = .init(top: 0, left: 0, bottom: 46, right: 0)
+            $0.contentInset = .init(top: 0, left: 0, bottom: 100, right: 0)
             $0.bounces = false
         }
     }()
@@ -122,12 +122,12 @@ public class ScheduleAddViewContoller: BaseViewController {
         
         vmTask.output.resSelected.sink {
             switch $0 {
-            case .SELECTED_TASK_START(let model):
+            case .SHOW_TASK_DATETIME_START:
                 debugPrint(#file, #function, #line)
-                self.openDateTimeView(isOpen: true, model: model)
-            case .SELECTED_TASK_END(let model):
+                self.openDateTimeView(isOpen: true)
+            case .SHOW_TASK_DATETIME_END:
                 debugPrint(#file, #function, #line)
-                self.openDateTimeView(isOpen: true, model: model)
+                self.openDateTimeView(isOpen: true)
             }
         }.store(in: &cancellable)
         
@@ -207,7 +207,7 @@ public class ScheduleAddViewContoller: BaseViewController {
 }
 
 extension ScheduleAddViewContoller {
-    private func openDateTimeView(isOpen: Bool, model: DailyModel) {
+    private func openDateTimeView(isOpen: Bool) {
         if isOpen {
             vTaskDateTime.snp.remakeConstraints {
                 $0.top.equalTo(vTask.snp.bottom)

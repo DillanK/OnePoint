@@ -24,7 +24,7 @@ class WeekendView: BaseView, WeekendProxy {
     static func create() -> WeekendView {
         return WeekendView(isBindCall: false).apply {
             $0.initializeCall()
-            LocalCalendarManger.shared.loadMonthly()
+            LocalCalendarManger.shared.loadWeekendly()
             $0.backgroundColor = .clear
         }
     }
@@ -51,6 +51,9 @@ class WeekendView: BaseView, WeekendProxy {
     
     var selectedWeek: IndexPath?
     
+    var callbackSelected: ((Int, Int, Int, Int) -> ())?
+    var callbackChangeMonth: ((Int, Int) -> ())?
+    
     override func bindView() {
         addSubview(vCollection)
     }
@@ -72,6 +75,9 @@ class WeekendView: BaseView, WeekendProxy {
         } receiveValue: { type in
             switch type {
             case .LOAD_MONTHLY_DATA:
+                debugPrint(#file, #function, #line, type)
+                self.reloadData(index: self.todayIndex())
+            case .LOAD_WEEKENDLY_DATA:
                 debugPrint(#file, #function, #line, type)
                 self.reloadData(index: self.todayIndex())
             case .ADD_DAYILY_DATA:
@@ -107,6 +113,23 @@ extension WeekendView {
     func weekendHeight() -> CGFloat {
         return (windowBounds().width / 375) * 45
     }
+    
+    func weekendInfo(year: Int, month: Int, day: Int, 
+                     callbackSelected: @escaping (Int, Int, Int, Int) -> (),
+                     callbackChangeMonth: @escaping (Int, Int) -> ()) {
+        self.callbackSelected = callbackSelected
+        self.callbackChangeMonth = callbackChangeMonth
+        
+        let selectedDay = String(format: "%04d%02d%02d", year, month, day)
+        LocalCalendarManger.shared.monthlyData.enumerated().forEach { position, value in
+            debugPrint("setWeekendInfo : \(value.0)")
+            if value.0 == selectedDay {
+                debugPrint("position : \(position)")
+                self.reloadData(index: position)
+                return
+            }
+        }
+    }
 }
 
 extension WeekendView {
@@ -115,22 +138,23 @@ extension WeekendView {
     private func todayIndex() -> Int {
         let startDayToWeek = Date().startOfWeek().string()
         var emptyCount = 0
-        let index = LocalCalendarManger.shared.monthlyData.firstIndex { value in
+        return LocalCalendarManger.shared.monthlyData.firstIndex { value in
             if value.1 as? DailyEmptyModel != nil {
                 emptyCount += 1
             }
             return value.0 == startDayToWeek
         } ?? 0
-        return 0//(index > 0) ? index - emptyCount : index
     }
     
     /// 주간 Cell UI를 다시 불러온다.
     /// - Parameter index: 주간 데이터의 시작 위치
     private func reloadData(index: Int) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.selectedWeek = IndexPath(row: index, section: 0)
             self.vCollection.reloadData()
+            let calcuratorValue = index - (index - ((index / 7) * 7))
             self.vCollection.setContentOffset(
-                .init(x: CGFloat(index / 7) * self.width(),
+                .init(x: CGFloat(calcuratorValue) * (self.width() / 7),
                       y: 0),
                 animated: false)
         }
@@ -151,8 +175,9 @@ extension WeekendView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeekendViewCell", for: indexPath) as! WeekendViewCell
         if let model = LocalCalendarManger.shared.monthlyData[indexPath.row].1 as? DailyModel {
             cell.bindData(data: model)
+            debugPrint("CurrentValue : \(model.year)   \(model.month.rawValue)   \(model.day)  \(model.weekend.localString())")
         }
-
+        
         if selectedWeek != nil, selectedWeek!.row == indexPath.row {
             cell.selected()
         } else {
@@ -164,8 +189,7 @@ extension WeekendView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if LocalCalendarManger.shared.monthlyData[indexPath.row].1 as? DailyModel != nil {
-            
-            return .init(width: (self.width() - 7) / 7, height: self.weekendHeight())
+            return .init(width: self.width() / 7, height: self.weekendHeight())
         } else {
             return .zero
         }
@@ -186,8 +210,10 @@ extension WeekendView: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         }
         
         cell.selected()
-        
         selectedWeek = indexPath
+        if let model = LocalCalendarManger.shared.monthlyData[indexPath.row].1 as? DailyModel {
+            callbackSelected?(model.year, model.month.value(), model.day, model.weekend.value())
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

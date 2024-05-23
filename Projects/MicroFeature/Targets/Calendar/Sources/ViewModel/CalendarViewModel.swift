@@ -19,8 +19,8 @@ class CalendarViewModel: BaseViewModel {
             .throttle(for: 0.2, scheduler: RunLoop.main, latest: true)
             .sink { type in
                 switch type {
-                case .makeMonthlyData(let isGabageData):
-                    self.loadMonthlyData()
+                case .makeMonthlyData(let isGabageData, let isEmptyData, let isMonth):
+                    self.loadMonthlyData(isGabageData, isEmptyData, isMonth)
 //                case .makeDays(let isBefore, let days, let model):
 //                    self.makeDailyData(isBefore, days, referenceData: model)
 //                case .makeWeekend(let referenceData, let overData):
@@ -33,7 +33,7 @@ class CalendarViewModel: BaseViewModel {
 
 extension CalendarViewModel: BaseViewModelProtocol {
     enum RequestCalendar {
-        case makeMonthlyData(isGabageData: Bool = true)
+        case makeMonthlyData(isGabageData: Bool = true, isEmptyData: Bool = true, isMonth: Bool = true)
         /// 한 주간 데이터 생성
         /// - Parameter referenceData : 데이터를 생성할 기준 데이터
 //        case makeWeekend(referenceData: DailyModel, overData: Int = 0)
@@ -78,9 +78,9 @@ extension CalendarViewModel: BaseViewModelProtocol {
 }
 
 extension CalendarViewModel {
-    func loadMonthlyData() {
+    func loadMonthlyData(_ isGabageData: Bool, _ isEmptyData: Bool, _ isMonth: Bool) {
         // 저장된 데이터가 있다면 저장된 데이터 사용
-        makeMonthlyData(true) { result in
+        makeMonthlyData(isGabageData, isEmptyData, isMonth) { result in
             debugPrint(result)
             self.output.calendar.send(.completeMakeMonthly(result))
         }
@@ -123,7 +123,10 @@ extension CalendarViewModel {
 
 extension CalendarViewModel {
     /// 데이터 생성
-    private func makeMonthlyData(_ isGabageData: Bool, complete: @escaping (Array<(String, CalendarModelProtocol)>) -> ()) {
+    private func makeMonthlyData(_ isGabageData: Bool, 
+                                 _ isEmptyData: Bool,
+                                 _ isMonth: Bool,
+                                 complete: @escaping (Array<(String, CalendarModelProtocol)>) -> ()) {
         // 시작 년월일 202001 ~ 현재 년도 + 10년
         var datas = Array<(String, CalendarModelProtocol)>()
 
@@ -131,11 +134,14 @@ extension CalendarViewModel {
         var weekday = convertWeekday(year: 2020, month: 1, day: 1)
         for year in 2020 ... endYear {
             for month in 1 ... 12 {
-                datas.append((String(format: "%04d%02d", year, month), MonthlyModel.init(year: year, month: month)))
+                if isMonth {
+                    datas.append((String(format: "%04d%02d", year, month),
+                                  MonthlyModel.init(year: year, month: month)))
+                }
                 
                 let lastDay = Month(rawValue: month)!.lastDay(year)
                 for day in 1 ... lastDay {
-                    if (year == 2020 && month == 1).not(), day == 1 {
+                    if (year == 2020 && month == 1).not(), day == 1, isEmptyData {
                         for _ in 1 ..< weekday {
                             datas.append(((""), DailyEmptyModel()))
                         }
@@ -149,7 +155,7 @@ extension CalendarViewModel {
                     
                     weekday = weekday + 1 > 7 ? 1 : weekday + 1
                     
-                    if day == lastDay, weekday != 1 {
+                    if day == lastDay, weekday != 1, isEmptyData {
                         debugPrint(#file, #function, #line, "Make Month : \(year)년 \(month)월 \(weekday)")
                         for _ in weekday ... 7 {
                             datas.append(((""), DailyEmptyModel()))

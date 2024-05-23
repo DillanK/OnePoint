@@ -174,8 +174,7 @@ class TaskView: BaseView {
     }
     
     override func initData() {
-        vm.output.res.send(.CHANGE_TASK_START(.init(date: Date())))
-        vm.output.res.send(.CHANGE_TASK_END(.init(date: Date())))
+
     }
     
     override func bindConstraint(_ isAdjustWindow: Bool) {

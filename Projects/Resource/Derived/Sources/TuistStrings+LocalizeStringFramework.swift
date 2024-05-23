@@ -12,77 +12,77 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name
 public enum BBString {
-  /// day
+  /// 하루전
   public static let aDayAgo = BBString.tr("Localizable", "A day ago")
-  /// month
+  /// 한달전
   public static let aMonthAgo = BBString.tr("Localizable", "A month ago")
-  /// week
+  /// 일주일전
   public static let aWeekAgo = BBString.tr("Localizable", "A week ago")
-  /// Add Schedule
+  /// 일정추가
   public static let addSchedule = BBString.tr("Localizable", "Add Schedule")
-  /// Color
+  /// 색상
   public static let color = BBString.tr("Localizable", "Color")
-  /// date
+  /// 날짜
   public static let date = BBString.tr("Localizable", "date")
-  /// Detail
+  /// 세부사항
   public static let detail = BBString.tr("Localizable", "Detail")
-  /// setting
+  /// 직접시간설정
   public static let directTimeSetting = BBString.tr("Localizable", "Direct time setting")
-  /// day
+  /// 매일
   public static let everyDay = BBString.tr("Localizable", "every day")
-  /// month
+  /// 매월
   public static let everyMonth = BBString.tr("Localizable", "every month")
-  /// week
+  /// 매주
   public static let everyWeek = BBString.tr("Localizable", "every week")
-  /// year
+  /// 매년
   public static let everyYear = BBString.tr("Localizable", "every year")
-  /// FRI
+  /// 금
   public static let fri = BBString.tr("Localizable", "FRI")
-  /// FRIDAY
+  /// 금요일
   public static let friday = BBString.tr("Localizable", "FRIDAY")
-  /// MON
+  /// 월
   public static let mon = BBString.tr("Localizable", "MON")
-  /// MONDAY
+  /// 월요일
   public static let monday = BBString.tr("Localizable", "MONDAY")
-  /// Move to temporary box
+  /// 임시박스로 이동
   public static let moveToTemporaryBox = BBString.tr("Localizable", "Move to temporary box")
-  /// no
+  /// 없음
   public static let noReminder = BBString.tr("Localizable", "No Reminder")
-  /// No Repeatedly
+  /// 없음
   public static let noRepeatedly = BBString.tr("Localizable", "No Repeatedly")
-  /// Once
+  /// 한번
   public static let once = BBString.tr("Localizable", "Once")
-  /// Please enter your details.
+  /// 세부사항을 입력해주세요.
   public static let pleaseEnterYourDetails = BBString.tr("Localizable", "Please enter your details.")
-  /// Please enter your schedule.
+  /// 일정을 입력해주세요.
   public static let pleaseEnterYourSchedule = BBString.tr("Localizable", "Please enter your schedule.")
-  /// Reminder
+  /// 알림
   public static let reminder = BBString.tr("Localizable", "Reminder")
-  /// Repeatedly
+  /// 반복
   public static let repeatedly = BBString.tr("Localizable", "Repeatedly")
-  /// SAT
+  /// 토
   public static let sat = BBString.tr("Localizable", "SAT")
-  /// SATURDAY
+  /// 토요일
   public static let saturday = BBString.tr("Localizable", "SATURDAY")
-  /// Share
-  public static let share = BBString.tr("Localizable", "Share")
-  /// Start/End Time
+  /// 공유
+  public static let share = BBString.tr("Localizable", "share")
+  /// 시작/종료시간
   public static let startEndTime = BBString.tr("Localizable", "Start/End Time")
-  /// SUN
+  /// 일
   public static let sun = BBString.tr("Localizable", "SUN")
-  /// SUNDAY
+  /// 일요일
   public static let sunday = BBString.tr("Localizable", "SUNDAY")
-  /// THU
+  /// 목
   public static let thu = BBString.tr("Localizable", "THU")
-  /// THURSDAY
+  /// 목요일
   public static let thursday = BBString.tr("Localizable", "THURSDAY")
-  /// TUE
+  /// 화
   public static let tue = BBString.tr("Localizable", "TUE")
-  /// TUESDAY
+  /// 화요일
   public static let tuesday = BBString.tr("Localizable", "TUESDAY")
-  /// WED
+  /// 수
   public static let wed = BBString.tr("Localizable", "WED")
-  /// WEDNESDAY
+  /// 수요일
   public static let wednesday = BBString.tr("Localizable", "WEDNESDAY")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

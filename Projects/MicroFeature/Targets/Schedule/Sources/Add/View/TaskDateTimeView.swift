@@ -11,6 +11,7 @@ import BaseFramework
 import SnapKit
 import AssetFramework
 import CalendarFramework
+import CommonFramework
 
 class TaskDateTimeView: BaseView {
     static func create(vm: TaskViewModel) -> BaseView {
@@ -224,17 +225,34 @@ class TaskDateTimeView: BaseView {
     }
     
     override func bindCombine() {
-        vm.output.resTaskDateTime.sink {
+        vm.output.resShowSelectedDateTime.sink {
             switch $0 {
-            case .SELECTED_RECT(let rect):
-                debugPrint(#file, #function, #line)
-                self.ivUpArrow.snp.remakeConstraints {
-                    $0.left.equalTo(rect.minX + (rect.width / 2) - self.ivUpArrow.width()/2)
-                    $0.bottom.equalToSuperview()
+            case .SHOW_WEEKEND_TASK_START(let rect, let model):
+                self.selectedAnimation(rect)
+                self.selectedData(model)
+                self.vWeek.weekendInfo(year: model.year,
+                                       month: model.month,
+                                       day: model.day) { year, month, day, weekend in
+                    self.vm.output.res.send(.CHANGE_TASK_START(.init(
+                        year: year, month: month, day: day, weekend: weekend,
+                        hour: model.hour, minute: model.minute)
+                    ))
+                } callbackChangeMonth: { year, month in
+                    
                 }
-                
-                UIView.animate(withDuration: 0.3) {
-                    self.layoutIfNeeded()
+            case .SHOW_WEEKEND_TASK_END(let rect, let model):
+                debugPrint(#file, #function, #line)
+                self.selectedAnimation(rect)
+                self.selectedData(model)
+                self.vWeek.weekendInfo(year: model.year,
+                                       month: model.month,
+                                       day: model.day) { year, month, day, weekend in
+                    self.vm.output.res.send(.CHANGE_TASK_END(.init(
+                        year: year, month: month, day: day, weekend: weekend,
+                        hour: model.hour, minute: model.minute)
+                    ))
+                } callbackChangeMonth: { year, month in
+                    
                 }
             }
         }.store(in: &cancellable)
@@ -372,6 +390,23 @@ class TaskDateTimeView: BaseView {
             $0.bottom.equalTo(lblMinute.snp.bottom)
             $0.width.equalTo(22)
         }
+    }
+}
+
+extension TaskDateTimeView {
+    func selectedAnimation(_ rect: CGRect) {
+        self.ivUpArrow.snp.remakeConstraints {
+            $0.left.equalTo(rect.minX + (rect.width / 2) - self.ivUpArrow.width()/2)
+            $0.bottom.equalToSuperview()
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.layoutIfNeeded()
+        }
+    }
+    
+    func selectedData(_ model: CommonFramework.DailyModel) {
+        btnDate.setTitle("\(model.year)년 \(model.month)월", for: .normal)
     }
 }
 

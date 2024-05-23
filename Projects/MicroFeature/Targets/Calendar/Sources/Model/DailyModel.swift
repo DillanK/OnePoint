@@ -19,11 +19,11 @@ public struct DailyModel: BaseModel, CalendarModelProtocol, CustomStringConverti
         "models: \(String(describing: models?.description))\n"
     }
     
-    let year: Int
-    let month: Month
-    let day: Int
-    let weekend: Weekend
-    var models: [BaseModel]?
+    public let year: Int
+    public let month: Month
+    public let day: Int
+    public let weekend: Weekend
+    public var models: [BaseModel]?
     
     init(year: Int, month: Month, day: Int, weekend: Weekend, models: [BaseModel]? = nil) {
         self.year = year
